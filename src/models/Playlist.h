@@ -11,7 +11,7 @@
 #include "PlaylistTrack.h"
 #include "Pager.h"
 #include "PlaylistSimple.h"
-#include "../utils/json.h"
+#include <nlohmann/json.hpp>
 
 
 class Playlist : public PlaylistSimple

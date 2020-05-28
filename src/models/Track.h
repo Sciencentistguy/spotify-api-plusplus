@@ -8,7 +8,7 @@
 #include "TrackLink.h"
 #include "Artist.h"
 #include "TrackSimple.h"
-#include "../utils/json.h"
+#include <nlohmann/json.hpp>
 
 class AlbumSimple;
 

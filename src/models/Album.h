@@ -5,7 +5,7 @@
 #include <map>
 #include <vector>
 #include <memory>
-#include "../utils/json.h"
+#include <nlohmann/json.hpp>
 #include "Pager.h"
 #include "Copyright.h"
 #include "Image.h"

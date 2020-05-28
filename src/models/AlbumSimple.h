@@ -9,7 +9,7 @@
 #include "Copyright.h"
 #include "Image.h"
 #include "ArtistSimple.h"
-#include "../utils/json.h"
+#include <nlohmann/json.hpp>
 
 class AlbumSimple
 {

@@ -3,7 +3,7 @@
 
 #include <curl/curl.h>
 #include "../models/Error.h"
-#include "json.h"
+#include <nlohmann/json.hpp>
 #include "CurlException.h"
 #include "SpotifyException.h"
 
@@ -32,7 +32,7 @@ nlohmann::json SpotifyCurlInternal(std::string request, std::string endpoint, st
     if(!curl)
     {
         std::cerr << "Could not initiate cURL" << std::endl;
-        return curl;
+        throw std::runtime_error("Could not initiate cURL");
     }
 
     std::string url = "https://api.spotify.com" + endpoint;

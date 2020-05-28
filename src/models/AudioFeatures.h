@@ -2,7 +2,7 @@
 #define SPOTIFY_PLUSPLUS_AUDIOFEATURES_H
 
 #include <string>
-#include "../utils/json.h"
+#include <nlohmann/json.hpp>
 
 class AudioFeatures
 {

@@ -8,7 +8,7 @@
 #include "Followers.h"
 #include "Image.h"
 #include "UserPublic.h"
-#include "../utils/json.h"
+#include <nlohmann/json.hpp>
 
 class User : public UserPublic
 {
