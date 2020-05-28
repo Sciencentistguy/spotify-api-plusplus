@@ -9,8 +9,8 @@ class Error {
  public:
     Error(nlohmann::json pagerJson);
 
-    int GetStatus() const;
-    std::string GetMessage() const;
+    [[nodiscard]] int getStatus() const;
+    [[nodiscard]] const std::string& getMessage() const;
 
  private:
     int status;

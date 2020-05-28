@@ -10,10 +10,10 @@
 
 class SavedTrack {
  public:
-    SavedTrack(nlohmann::json trackJson);
+    explicit SavedTrack(nlohmann::json trackJson);
 
-    std::string GetAddedAt() const;
-    std::shared_ptr<Track> GetTrack() const;
+    [[nodiscard]] const std::string& getAddedAt() const;
+    [[nodiscard]] std::shared_ptr<Track> getTrack() const;
 
  private:
     std::string addedAt;

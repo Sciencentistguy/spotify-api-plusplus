@@ -1,9 +1,11 @@
 #include "TrackSimple.h"
 
+#include <memory>
+
 TrackSimple::TrackSimple(nlohmann::json trackJson) {
-    for (nlohmann::json json : trackJson["artists"])
-        artists.push_back(std::shared_ptr<ArtistSimple>(new ArtistSimple(json)));
-    for (std::string market : trackJson["available_markets"])
+    for (const auto& json : trackJson["artists"])
+        artists.push_back(std::make_shared<ArtistSimple>(json));
+    for (const auto& market : trackJson["available_markets"])
         availableMarkets.push_back(market);
     discNumber = trackJson["disc_number"];
     durationMs = trackJson["duration_ms"];
@@ -13,7 +15,7 @@ TrackSimple::TrackSimple(nlohmann::json trackJson) {
     href = trackJson["href"];
     id = trackJson["id"];
     /* is_playable and linked_from, although in the API, don't seem to exist in any of the JSON being returned */
-    // isPlayable = trackJson["is_playable"];
+    // playable = trackJson["is_playable"];
     // linkedFrom = std::shared_ptr<TrackLink>(new TrackLink(trackJson["linked_from"]));
     name = trackJson["name"];
     if (!trackJson["preview_url"].is_null())
@@ -23,62 +25,62 @@ TrackSimple::TrackSimple(nlohmann::json trackJson) {
     uri = trackJson["uri"];
 }
 
-std::vector<std::shared_ptr<ArtistSimple>> TrackSimple::GetArtists() const {
+const std::vector<std::shared_ptr<ArtistSimple>>& TrackSimple::getArtists() const {
     return artists;
 }
 
-std::vector<std::string> TrackSimple::GetAvailableMarkets() const {
+const std::vector<std::string>& TrackSimple::getAvailableMarkets() const {
     return availableMarkets;
 }
 
-int TrackSimple::GetDiscNumber() const {
+int TrackSimple::getDiscNumber() const {
     return discNumber;
 }
 
-int TrackSimple::GetDurationMs() const {
+int TrackSimple::getDurationMs() const {
     return durationMs;
 }
 
-bool TrackSimple::IsExplicit() const {
+bool TrackSimple::getIsExplicit() const {
     return isExplicit;
 }
 
-std::map<std::string, std::string> TrackSimple::GetExternalUrls() const {
+const std::map<std::string, std::string>& TrackSimple::getExternalUrls() const {
     return externalUrls;
 }
 
-std::string TrackSimple::GetHref() const {
+const std::string& TrackSimple::getHref() const {
     return href;
 }
 
-std::string TrackSimple::GetId() const {
+const std::string& TrackSimple::getId() const {
     return id;
 }
 
-bool TrackSimple::IsPlayable() const {
-    return isPlayable;
+bool TrackSimple::isPlayable() const {
+    return playable;
 }
 
-std::shared_ptr<TrackLink> TrackSimple::GetLinkedFrom() const {
+std::shared_ptr<TrackLink> TrackSimple::getLinkedFrom() const {
     return linkedFrom;
 }
 
-std::string TrackSimple::GetName() const {
+const std::string& TrackSimple::getName() const {
     return name;
 }
 
-std::string TrackSimple::GetPreviewUrl() const {
+const std::string& TrackSimple::getPreviewUrl() const {
     return previewUrl;
 }
 
-int TrackSimple::GetTrackNumber() const {
+int TrackSimple::getTrackNumber() const {
     return trackNumber;
 }
 
-std::string TrackSimple::GetType() const {
+const std::string& TrackSimple::getType() const {
     return type;
 }
 
-std::string TrackSimple::GetUri() const {
+const std::string& TrackSimple::getUri() const {
     return uri;
 }

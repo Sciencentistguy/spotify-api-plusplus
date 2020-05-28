@@ -10,26 +10,26 @@ ArtistSimple::ArtistSimple(nlohmann::json artistJson) {
     uri = artistJson["uri"];
 }
 
-std::map<std::string, std::string> ArtistSimple::GetExternalUrls() const {
+const std::map<std::string, std::string>& ArtistSimple::getExternalUrls() const {
     return externalUrls;
 }
 
-std::string ArtistSimple::GetHref() const {
+const std::string& ArtistSimple::getHref() const {
     return href;
 }
 
-std::string ArtistSimple::GetId() const {
+const std::string& ArtistSimple::getId() const {
     return id;
 }
 
-std::string ArtistSimple::GetName() const {
+const std::string& ArtistSimple::getName() const {
     return name;
 }
 
-std::string ArtistSimple::GetType() const {
+const std::string& ArtistSimple::getType() const {
     return type;
 }
 
-std::string ArtistSimple::GetUri() const {
+const std::string& ArtistSimple::getUri() const {
     return uri;
 }

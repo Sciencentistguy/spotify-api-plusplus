@@ -9,16 +9,17 @@
 
 class CurrentlyPlayingContext {
  public:
-    CurrentlyPlayingContext(nlohmann::json currentlyPlayingJson);
+    explicit CurrentlyPlayingContext(nlohmann::json currentlyPlayingJson);
 
-    Device GetDevice() const;
-    std::string GetRepeatState() const;
-    bool GetShuffleState() const;
-    Context GetContext() const;
-    int GetTimestamp() const;
-    int GetProgressMs() const;
-    bool IsPlaying() const;
-    Track GetItem() const;
+    [[nodiscard]] const Device& getDevice() const;
+    [[nodiscard]] const std::string& getRepeatState() const;
+    [[nodiscard]] bool getShuffleState() const;
+    [[nodiscard]] const Context& getContext() const;
+    [[nodiscard]] int getTimestamp() const;
+    [[nodiscard]] int getProgressMs() const;
+    [[nodiscard]] bool getIsPlaying() const;
+    [[nodiscard]] const Track& getItem() const;
+    [[nodiscard]] bool isPlaying() const;
 
  private:
     Device device;
@@ -27,7 +28,7 @@ class CurrentlyPlayingContext {
     Context context;
     int timestamp;
     int progressMs;
-    bool isPlaying;
+    bool playing;
     Track item;
 };
 

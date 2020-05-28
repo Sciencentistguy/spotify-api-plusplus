@@ -1,14 +1,16 @@
 #include "SavedAlbum.h"
 
+#include <memory>
+
 SavedAlbum::SavedAlbum(nlohmann::json albumJson) {
     addedAt = albumJson["added_at"];
-    album = std::shared_ptr<Album>(new Album(albumJson["album"]));
+    album = std::make_shared<Album>(albumJson["album"]);
 }
 
-std::string SavedAlbum::GetAddedAt() const {
+const std::string& SavedAlbum::getAddedAt() const {
     return addedAt;
 }
 
-std::shared_ptr<Album> SavedAlbum::GetAlbum() const {
+std::shared_ptr<Album> SavedAlbum::getAlbum() const {
     return album;
 }

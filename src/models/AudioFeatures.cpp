@@ -21,74 +21,74 @@ AudioFeatures::AudioFeatures(nlohmann::json audioFeaturesJson) {
     valence = audioFeaturesJson["valence"];
 }
 
-float AudioFeatures::GetAcousticness() const {
+float AudioFeatures::getAcousticness() const {
     return acousticness;
 }
 
-std::string AudioFeatures::GetAnalysisUrl() const {
+const std::string& AudioFeatures::getAnalysisUrl() const {
     return analysisUrl;
 }
 
-float AudioFeatures::GetDanceability() const {
+float AudioFeatures::getDanceability() const {
     return danceability;
 }
 
-int AudioFeatures::GetDurationMs() const {
+int AudioFeatures::getDurationMs() const {
     return durationMs;
 }
 
-float AudioFeatures::GetEnergy() const {
+float AudioFeatures::getEnergy() const {
     return energy;
 }
 
-std::string AudioFeatures::GetId() const {
+const std::string& AudioFeatures::getId() const {
     return id;
 }
 
-float AudioFeatures::GetInstrumentalness() const {
+float AudioFeatures::getInstrumentalness() const {
     return instrumentalness;
 }
 
-int AudioFeatures::GetKey() const {
+int AudioFeatures::getKey() const {
     return key;
 }
 
-float AudioFeatures::GetLiveness() const {
+float AudioFeatures::getLiveness() const {
     return liveness;
 }
 
-float AudioFeatures::GetLoudness() const {
+float AudioFeatures::getLoudness() const {
     return loudness;
 }
 
-int AudioFeatures::GetMode() const {
+int AudioFeatures::getMode() const {
     return mode;
 }
 
-float AudioFeatures::GetSpeechiness() const {
+float AudioFeatures::getSpeechiness() const {
     return speechiness;
 }
 
-float AudioFeatures::GetTempo() const {
+float AudioFeatures::getTempo() const {
     return tempo;
 }
 
-int AudioFeatures::GetTimeSignature() const {
+int AudioFeatures::getTimeSignature() const {
     return timeSignature;
 }
 
-std::string AudioFeatures::GetTrackHref() const {
+const std::string& AudioFeatures::getTrackHref() const {
     return trackHref;
 }
 
-std::string AudioFeatures::GetType() const {
+const std::string& AudioFeatures::getType() const {
     return type;
 }
 
-std::string AudioFeatures::GetUri() const {
+const std::string& AudioFeatures::getUri() const {
     return uri;
 }
 
-float AudioFeatures::GetValence() const {
+float AudioFeatures::getValence() const {
     return valence;
 }

@@ -5,12 +5,12 @@
 
 class Context {
  public:
-    Context(nlohmann::json contextJson);
+    explicit Context(nlohmann::json contextJson);
 
-    std::string GetUri() const;
-    std::string GetHref() const;
-    std::map<std::string, std::string> GetExternalUrls() const;
-    std::string GetType() const;
+    [[nodiscard]] const std::string& getUri() const;
+    [[nodiscard]] const std::string& getHref() const;
+    [[nodiscard]] const std::map<std::string, std::string>& getExternalUrls() const;
+    [[nodiscard]] const std::string& getType() const;
 
  private:
     std::string uri;

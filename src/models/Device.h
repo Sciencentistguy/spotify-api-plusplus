@@ -5,19 +5,19 @@
 
 class Device {
  public:
-    Device(nlohmann::json deviceJson);
+    explicit Device(nlohmann::json deviceJson);
 
-    std::string GetId() const;
-    bool IsActive() const;
-    bool IsRestricted() const;
-    std::string GetName() const;
-    std::string GetType() const;
-    int GetVolumePercent() const;
+    [[nodiscard]] const std::string& getId() const;
+    [[nodiscard]] bool isActive() const;
+    [[nodiscard]] bool isRestricted() const;
+    [[nodiscard]] const std::string& getName() const;
+    [[nodiscard]] const std::string& getType() const;
+    [[nodiscard]] int getVolumePercent() const;
 
  private:
     std::string id;
-    bool isActive;
-    bool isRestricted;
+    bool active;
+    bool restricted;
     std::string name;
     std::string type;
     int volumePercent;

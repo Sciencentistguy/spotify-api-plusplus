@@ -1,58 +1,60 @@
 #include "AlbumSimple.h"
 
+#include <memory>
+
 AlbumSimple::AlbumSimple(nlohmann::json albumJson) {
     albumType = albumJson["album_type"];
-    for (nlohmann::json json : albumJson["artists"])
-        artists.push_back(std::shared_ptr<ArtistSimple>(new ArtistSimple(json)));
-    for (std::string market : albumJson["available_markets"])
+    for (const auto& json : albumJson["artists"])
+        artists.push_back(std::make_shared<ArtistSimple>(json));
+    for (const auto& market : albumJson["available_markets"])
         availableMarkets.push_back(market);
     for (auto it = albumJson["external_urls"].begin(); it != albumJson["external_urls"].end(); ++it)
         externalUrls[it.key()] = it.value();
     href = albumJson["href"];
     id = albumJson["id"];
-    for (nlohmann::json json : albumJson["images"])
-        images.push_back(std::shared_ptr<Image>(new Image(json)));
+    for (const auto& json : albumJson["images"])
+        images.push_back(std::make_shared<Image>(json));
     name = albumJson["name"];
     type = albumJson["type"];
     uri = albumJson["uri"];
 }
 
-std::string AlbumSimple::GetAlbumType() const {
+const std::string& AlbumSimple::getAlbumType() const {
     return albumType;
 }
 
-std::vector<std::shared_ptr<ArtistSimple>> AlbumSimple::GetArtists() const {
+const std::vector<std::shared_ptr<ArtistSimple>>& AlbumSimple::getArtists() const {
     return artists;
 }
 
-std::vector<std::string> AlbumSimple::GetAvailableMarkets() const {
+const std::vector<std::string>& AlbumSimple::getAvailableMarkets() const {
     return availableMarkets;
 }
 
-std::map<std::string, std::string> AlbumSimple::GetExternalUrls() const {
+const std::map<std::string, std::string>& AlbumSimple::getExternalUrls() const {
     return externalUrls;
 }
 
-std::string AlbumSimple::GetHref() const {
+const std::string& AlbumSimple::getHref() const {
     return href;
 }
 
-std::string AlbumSimple::GetId() const {
+const std::string& AlbumSimple::getId() const {
     return id;
 }
 
-std::vector<std::shared_ptr<Image>> AlbumSimple::GetImages() const {
+const std::vector<std::shared_ptr<Image>>& AlbumSimple::getImages() const {
     return images;
 }
 
-std::string AlbumSimple::GetName() const {
+const std::string& AlbumSimple::getName() const {
     return name;
 }
 
-std::string AlbumSimple::GetType() const {
+const std::string& AlbumSimple::getType() const {
     return type;
 }
 
-std::string AlbumSimple::GetUri() const {
+const std::string& AlbumSimple::getUri() const {
     return uri;
 }

@@ -9,26 +9,26 @@ RecommendationsSeed::RecommendationsSeed(nlohmann::json reccomendationsJson) {
     type = reccomendationsJson["type"];
 }
 
-int RecommendationsSeed::GetAfterFilteringSize() const {
+int RecommendationsSeed::getAfterFilteringSize() const {
     return afterFilteringSize;
 }
 
-int RecommendationsSeed::GetAfterRelinkingSize() const {
+int RecommendationsSeed::getAfterRelinkingSize() const {
     return afterRelinkingSize;
 }
 
-std::string RecommendationsSeed::GetHref() const {
+const std::string& RecommendationsSeed::getHref() const {
     return href;
 }
 
-std::string RecommendationsSeed::GetId() const {
+const std::string& RecommendationsSeed::getId() const {
     return id;
 }
 
-int RecommendationsSeed::GetInitialPoolSize() const {
+int RecommendationsSeed::getInitialPoolSize() const {
     return initialPoolSize;
 }
 
-std::string RecommendationsSeed::GetType() const {
+const std::string& RecommendationsSeed::getType() const {
     return type;
 }

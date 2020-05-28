@@ -7,8 +7,9 @@
 
 class Cursor {
  public:
-    Cursor(nlohmann::json cursorJson);
-    std::string GetAfter() const;
+    explicit Cursor(nlohmann::json cursorJson);
+
+    [[nodiscard]] const std::string& getAfter() const;
 
  private:
     std::string after;

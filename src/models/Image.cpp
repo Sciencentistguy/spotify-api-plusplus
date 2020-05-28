@@ -8,14 +8,14 @@ Image::Image(nlohmann::json imageJson) {
         width = imageJson["width"];
 }
 
-int Image::GetHeight() const {
+int Image::getHeight() const {
     return height;
 }
 
-std::string Image::GetUrl() const {
+const std::string& Image::getUrl() const {
     return url;
 }
 
-int Image::GetWidth() const {
+int Image::getWidth() const {
     return width;
 }

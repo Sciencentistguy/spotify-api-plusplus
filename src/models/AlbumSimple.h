@@ -15,18 +15,18 @@
 
 class AlbumSimple {
  public:
-    AlbumSimple(nlohmann::json albumJson);
+    explicit AlbumSimple(nlohmann::json albumJson);
 
-    std::string GetAlbumType() const;
-    std::vector<std::shared_ptr<ArtistSimple>> GetArtists() const;
-    std::vector<std::string> GetAvailableMarkets() const;
-    std::map<std::string, std::string> GetExternalUrls() const;
-    std::string GetHref() const;
-    std::string GetId() const;
-    std::vector<std::shared_ptr<Image>> GetImages() const;
-    std::string GetName() const;
-    std::string GetType() const;
-    std::string GetUri() const;
+    [[nodiscard]] const std::string& getAlbumType() const;
+    [[nodiscard]] const std::vector<std::shared_ptr<ArtistSimple>>& getArtists() const;
+    [[nodiscard]] const std::vector<std::string>& getAvailableMarkets() const;
+    [[nodiscard]] const std::map<std::string, std::string>& getExternalUrls() const;
+    [[nodiscard]] const std::string& getHref() const;
+    [[nodiscard]] const std::string& getId() const;
+    [[nodiscard]] const std::vector<std::shared_ptr<Image>>& getImages() const;
+    [[nodiscard]] const std::string& getName() const;
+    [[nodiscard]] const std::string& getType() const;
+    [[nodiscard]] const std::string& getUri() const;
 
  private:
     std::string albumType;

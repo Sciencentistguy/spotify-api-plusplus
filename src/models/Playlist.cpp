@@ -1,15 +1,17 @@
 #include "Playlist.h"
 
+#include <memory>
+
 Playlist::Playlist(nlohmann::json playlistJson) : PlaylistSimple::PlaylistSimple(playlistJson) {
     if (!playlistJson["description"].is_null())
         description = playlistJson["description"];
-    followers = std::shared_ptr<Followers>(new Followers(playlistJson["followers"]));
+    followers = std::make_shared<Followers>(playlistJson["followers"]);
 }
 
-std::string Playlist::GetDescription() const {
+const std::string& Playlist::getDescription() const {
     return description;
 }
 
-std::shared_ptr<Followers> Playlist::GetFollowers() const {
+std::shared_ptr<Followers> Playlist::getFollowers() const {
     return followers;
 }

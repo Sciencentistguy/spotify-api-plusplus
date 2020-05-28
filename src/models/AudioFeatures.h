@@ -7,26 +7,26 @@
 
 class AudioFeatures {
  public:
-    AudioFeatures(nlohmann::json audioFeaturesJson);
+    explicit AudioFeatures(nlohmann::json audioFeaturesJson);
 
-    float GetAcousticness() const;
-    std::string GetAnalysisUrl() const;
-    float GetDanceability() const;
-    int GetDurationMs() const;
-    float GetEnergy() const;
-    std::string GetId() const;
-    float GetInstrumentalness() const;
-    int GetKey() const;
-    float GetLiveness() const;
-    float GetLoudness() const;
-    int GetMode() const;
-    float GetSpeechiness() const;
-    float GetTempo() const;
-    int GetTimeSignature() const;
-    std::string GetTrackHref() const;
-    std::string GetType() const;
-    std::string GetUri() const;
-    float GetValence() const;
+    [[nodiscard]] float getAcousticness() const;
+    [[nodiscard]] const std::string& getAnalysisUrl() const;
+    [[nodiscard]] float getDanceability() const;
+    [[nodiscard]] int getDurationMs() const;
+    [[nodiscard]] float getEnergy() const;
+    [[nodiscard]] const std::string& getId() const;
+    [[nodiscard]] float getInstrumentalness() const;
+    [[nodiscard]] int getKey() const;
+    [[nodiscard]] float getLiveness() const;
+    [[nodiscard]] float getLoudness() const;
+    [[nodiscard]] int getMode() const;
+    [[nodiscard]] float getSpeechiness() const;
+    [[nodiscard]] float getTempo() const;
+    [[nodiscard]] int getTimeSignature() const;
+    [[nodiscard]] const std::string& getTrackHref() const;
+    [[nodiscard]] const std::string& getType() const;
+    [[nodiscard]] const std::string& getUri() const;
+    [[nodiscard]] float getValence() const;
 
  private:
     float acousticness;

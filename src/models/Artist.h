@@ -14,12 +14,12 @@
 
 class Artist : public ArtistSimple {
  public:
-    Artist(nlohmann::json artistJson);
+    explicit Artist(nlohmann::json artistJson);
 
-    std::shared_ptr<Followers> GetFollowers() const;
-    std::vector<std::string> GetGenres() const;
-    std::vector<std::shared_ptr<Image>> GetImages() const;
-    int GetPopularity() const;
+    [[nodiscard]] std::shared_ptr<Followers> getFollowers() const;
+    [[nodiscard]] const std::vector<std::string>& getGenres() const;
+    [[nodiscard]] const std::vector<std::shared_ptr<Image>>& getImages() const;
+    [[nodiscard]] int getPopularity() const;
 
  private:
     std::shared_ptr<Followers> followers;

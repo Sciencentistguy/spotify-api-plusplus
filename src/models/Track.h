@@ -16,12 +16,12 @@ class AlbumSimple;
 
 class Track : public TrackSimple {
  public:
-    Track(nlohmann::json trackJson);
+    explicit Track(nlohmann::json trackJson);
     ~Track();
 
-    std::shared_ptr<AlbumSimple> GetAlbum() const;
-    std::map<std::string, std::string> GetExternalIds() const;
-    int GetPopularity() const;
+    [[nodiscard]] const std::shared_ptr<AlbumSimple>& getAlbum() const;
+    [[nodiscard]] const std::map<std::string, std::string>& getExternalIds() const;
+    [[nodiscard]] int getPopularity() const;
 
  private:
     std::shared_ptr<AlbumSimple> album;

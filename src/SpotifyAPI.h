@@ -22,146 +22,146 @@ class SpotifyAPI {
  public:
     SpotifyAPI();
 
-    void setAuthToken(std::string authToken);
+    void setAuthToken(const std::string& token);
 
-    std::shared_ptr<Album> GetAlbum(std::string albumId, options_t options = options_t());
+    std::shared_ptr<Album> getAlbum(const std::string& albumId, const options_t& options = options_t());
 
-    std::vector<std::shared_ptr<Album>> GetAlbums(std::vector<std::string> albumIds, options_t options = options_t());
+    std::vector<std::shared_ptr<Album>> getAlbums(const std::vector<std::string>& albumIds, const options_t& options = options_t());
 
-    Pager<TrackSimple> GetAlbumTracks(std::string albumId, options_t options = options_t());
+    Pager<TrackSimple> getAlbumTracks(const std::string& albumId, const options_t& options = options_t());
 
-    std::shared_ptr<Artist> GetArtist(std::string artistId, options_t options = options_t());
+    std::shared_ptr<Artist> getArtist(const std::string& artistId, const options_t& options = options_t());
 
-    std::vector<std::shared_ptr<Artist>> GetArtists(std::vector<std::string> artistIds, options_t options = options_t());
+    std::vector<std::shared_ptr<Artist>> getArtists(const std::vector<std::string>& artistIds, const options_t& options = options_t());
 
-    Pager<AlbumSimple> GetArtistAlbums(std::string artistId, options_t options = options_t());
+    Pager<AlbumSimple> getArtistAlbums(const std::string& artistId, const options_t& options = options_t());
 
-    std::vector<std::shared_ptr<Track>> GetArtistTopTracks(std::string artistId, std::string country, options_t options = options_t());
+    std::vector<std::shared_ptr<Track>> getArtistTopTracks(const std::string& artistId, const std::string& country, options_t options = options_t());
 
-    std::vector<std::shared_ptr<Artist>> GetArtistRelatedArtists(std::string artistId, options_t options = options_t());
+    std::vector<std::shared_ptr<Artist>> getArtistRelatedArtists(const std::string& artistId, const options_t& options = options_t());
 
-    std::shared_ptr<AudioFeatures> GetAudioFeatures(std::string trackId, options_t options = options_t());
+    std::shared_ptr<AudioFeatures> getAudioFeatures(const std::string& trackId, const options_t& options = options_t());
 
-    std::vector<std::shared_ptr<AudioFeatures>> GetAudioFeatures(std::vector<std::string> trackIds, options_t options = options_t());
+    std::vector<std::shared_ptr<AudioFeatures>> getAudioFeatures(const std::vector<std::string>& trackIds, const options_t& options = options_t());
 
-    Pager<PlaylistSimple> GetFeaturedPlaylists(options_t options = options_t());
+    Pager<PlaylistSimple> getFeaturedPlaylists(const options_t& options = options_t());
 
-    Pager<AlbumSimple> GetNewReleases(options_t options = options_t());
+    Pager<AlbumSimple> getNewReleases(const options_t& options = options_t());
 
-    Pager<Category> GetCategories(options_t options = options_t());
+    Pager<Category> getCategories(const options_t& options = options_t());
 
-    std::shared_ptr<Category> GetCategory(std::string categoryId, options_t options = options_t());
+    std::shared_ptr<Category> getCategory(const std::string& categoryId, const options_t& options = options_t());
 
-    Pager<PlaylistSimple> GetCategoryPlaylists(std::string categoryId, options_t options = options_t());
+    Pager<PlaylistSimple> getCategoryPlaylists(const std::string& categoryId, const options_t& options = options_t());
 
-    std::shared_ptr<User> GetMe(options_t options = options_t());
+    std::shared_ptr<User> getMe(const options_t& options = options_t());
 
-    CursorPager<Artist> GetMyFollowedArtists(options_t options = options_t());
+    CursorPager<Artist> getMyFollowedArtists(options_t options = options_t());
 
-    void FollowArtist(std::string artistId, options_t options = options_t());
+    void followArtist(const std::string& artistId, options_t options = options_t());
 
-    void FollowUser(std::string userId, options_t options = options_t());
+    void followUser(const std::string& userId, options_t options = options_t());
 
-    void UnfollowArtist(std::string artistId, options_t options = options_t());
+    void unfollowArtist(const std::string& artistId, options_t options = options_t());
 
-    void UnfollowUser(std::string userId, options_t options = options_t());
+    void unfollowUser(const std::string& userId, options_t options = options_t());
 
-    bool CheckFollowingArtist(std::string artistId, options_t options = options_t());
+    bool checkFollowingArtist(const std::string& artistId, options_t options = options_t());
 
-    bool CheckFollowingUser(std::string userId, options_t options = options_t());
+    bool checkFollowingUser(const std::string& userId, options_t options = options_t());
 
-    void FollowPlaylist(std::string ownerId, std::string playlistId, options_t options = options_t());
+    void followPlaylist(const std::string& ownerId, const std::string& playlistId, const options_t& options = options_t());
 
-    void UnfollowPlaylist(std::string ownerId, std::string playlistId, options_t options = options_t());
+    void unfollowPlaylist(const std::string& ownerId, const std::string& playlistId, const options_t& options = options_t());
 
-    void SaveTracks(std::vector<std::string> trackIds, options_t options = options_t());
+    void saveTracks(const std::vector<std::string>& trackIds, options_t options = options_t());
 
-    Pager<SavedTrack> GetMySavedTracks(options_t options = options_t());
+    Pager<SavedTrack> getMySavedTracks(const options_t& options = options_t());
 
-    void RemoveSavedTracks(std::vector<std::string> trackIds, options_t options = options_t());
+    void removeSavedTracks(const std::vector<std::string>& trackIds, options_t options = options_t());
 
-    bool CheckSavedTracks(std::vector<std::string> trackIds, options_t options = options_t());
+    bool checkSavedTracks(const std::vector<std::string>& trackIds, options_t options = options_t());
 
-    void SaveAlbums(std::vector<std::string> albumIds, options_t options = options_t());
+    void saveAlbums(const std::vector<std::string>& albumIds, options_t options = options_t());
 
-    Pager<SavedAlbum> GetMySavedAlbums(options_t options = options_t());
+    Pager<SavedAlbum> getMySavedAlbums(const options_t& options = options_t());
 
-    void RemoveSavedAlbums(std::vector<std::string> albumIds, options_t options = options_t());
+    void removeSavedAlbums(const std::vector<std::string>& albumIds, options_t options = options_t());
 
-    bool CheckSavedAlbums(std::vector<std::string> albumIds, options_t options = options_t());
+    bool checkSavedAlbums(const std::vector<std::string>& albumIds, options_t options = options_t());
 
-    Pager<Artist> GetMyTopArtists(options_t options = options_t());
+    Pager<Artist> getMyTopArtists(const options_t& options = options_t());
 
-    Pager<Track> GetMyTopTracks(options_t options = options_t());
+    Pager<Track> getMyTopTracks(const options_t& options = options_t());
 
-    Recommendations GetRecommendations(options_t options = options_t());
+    Recommendations getRecommendations(const options_t& options = options_t());
 
-    Pager<AlbumSimple> SearchAlbums(std::string query, options_t options = options_t());
+    Pager<AlbumSimple> searchAlbums(const std::string& query, options_t options = options_t());
 
-    Pager<Artist> SearchArtists(std::string query, options_t options = options_t());
+    Pager<Artist> searchArtists(const std::string& query, options_t options = options_t());
 
-    Pager<PlaylistSimple> SearchPlaylists(std::string query, options_t options = options_t());
+    Pager<PlaylistSimple> searchPlaylists(const std::string& query, options_t options = options_t());
 
-    Pager<Track> SearchTracks(std::string query, options_t options = options_t());
+    Pager<Track> searchTracks(const std::string& query, options_t options = options_t());
 
-    std::shared_ptr<Track> GetTrack(std::string trackId, options_t options = options_t());
+    std::shared_ptr<Track> getTrack(const std::string& trackId, const options_t& options = options_t());
 
-    std::vector<std::shared_ptr<Track>> GetTracks(std::vector<std::string> trackIds, options_t options = options_t());
+    std::vector<std::shared_ptr<Track>> getTracks(const std::vector<std::string>& trackIds, const options_t& options = options_t());
 
-    std::shared_ptr<UserPublic> GetUser(std::string userId, options_t options = options_t());
+    std::shared_ptr<UserPublic> getUser(const std::string& userId, const options_t& options = options_t());
 
-    Pager<PlaylistSimple> GetUserPlaylists(std::string userId, options_t options = options_t());
+    Pager<PlaylistSimple> getUserPlaylists(const std::string& userId, const options_t& options = options_t());
 
-    Pager<PlaylistSimple> GetMyPlaylists(options_t options = options_t());
+    Pager<PlaylistSimple> getMyPlaylists(const options_t& options = options_t());
 
-    std::shared_ptr<Playlist> GetPlaylist(std::string userId, std::string playlistId, options_t options = options_t());
+    std::shared_ptr<Playlist> getPlaylist(const std::string& userId, const std::string& playlistId, const options_t& options = options_t());
 
-    Pager<PlaylistTrack> GetPlaylistTracks(std::string userId, std::string playlistId, options_t options = options_t());
+    Pager<PlaylistTrack> getPlaylistTracks(const std::string& userId, const std::string& playlistId, const options_t& options = options_t());
 
-    std::shared_ptr<Playlist> CreatePlaylist(std::string userId, std::string name, options_t options = options_t());
+    std::shared_ptr<Playlist> createPlaylist(const std::string& userId, const std::string& name, const options_t& options = options_t());
 
-    void EditPlaylist(std::string userId, std::string playlistId, options_t options = options_t());
+    void editPlaylist(const std::string& userId, const std::string& playlistId, const options_t& options = options_t());
 
-    void AddTracksToPlaylist(std::string userId, std::string playlistId, std::vector<std::string> trackUris, options_t options = options_t());
+    void addTracksToPlaylist(const std::string& userId, const std::string& playlistId, const std::vector<std::string>& trackUris, options_t options = options_t());
 
-    void RemoveTracksFromPlaylist(std::string userId, std::string playlistId, std::vector<std::string> trackUris, std::string snapshotId = "");
+    void removeTracksFromPlaylist(const std::string& userId, const std::string& playlistId, const std::vector<std::string>& trackUris, std::string snapshotId = "");
 
-    void RemoveTracksFromPlaylist(std::string userId, std::string playlistId, std::map<std::string, std::vector<int>> trackUrisToPositions,
+    void removeTracksFromPlaylist(const std::string& userId, const std::string& playlistId, const std::map<std::string, std::vector<int>>& trackUrisToPositions,
                                   std::string snapshotId = "");
 
-    void RemoveTracksFromPlaylist(std::string userId, std::string playlistId, std::vector<int> positions, std::string snapshotId);
+    void removeTracksFromPlaylist(const std::string& userId, const std::string& playlistId, const std::vector<int>& positions, const std::string& snapshotId);
 
-    void ReorderPlaylistTracks(std::string userId, std::string playlistId, int rangeStart, int insertBefore, options_t options = options_t());
+    void reorderPlaylistTracks(const std::string& userId, const std::string& playlistId, int rangeStart, int insertBefore, const options_t& options = options_t());
 
-    void ReplacePlaylistTracks(std::string userId, std::string playlistId, std::vector<std::string> trackUris, options_t options = options_t());
+    void replacePlaylistTracks(const std::string& userId, const std::string& playlistId, const std::vector<std::string>& trackUris, options_t options = options_t());
 
-    bool CheckUserFollowingPlaylist(std::string userId, std::string playlistId, std::vector<std::string> userIds, options_t options = options_t());
+    bool checkUserFollowingPlaylist(const std::string& userId, const std::string& playlistId, const std::vector<std::string>& userIds, options_t options = options_t());
 
-    void UploadCustomPlaylistCover(std::string userId, std::string playlistId, std::string contentType, std::string image, options_t options = options_t());
+    void uploadCustomPlaylistCover(std::string userId, std::string playlistId, std::string contentType, std::string image, options_t options = options_t());
 
-    CursorPager<PlayHistoryObject> GetMyRecentlyPlayed(options_t options = options_t());
+    CursorPager<PlayHistoryObject> getMyRecentlyPlayed(options_t options = options_t());
 
-    std::vector<std::shared_ptr<Device>> GetMyDevices(options_t options = options_t());
+    std::vector<std::shared_ptr<Device>> getMyDevices(options_t options = options_t());
 
-    std::shared_ptr<CurrentlyPlayingContext> GetMyCurrentPlayback(options_t options = options_t());
+    std::shared_ptr<CurrentlyPlayingContext> getMyCurrentPlayback(options_t options = options_t());
 
-    std::shared_ptr<CurrentlyPlayingTrack> GetMyCurrentPlayingTrack(options_t options = options_t());
+    std::shared_ptr<CurrentlyPlayingTrack> getMyCurrentPlayingTrack(options_t options = options_t());
 
-    void TransferMyPlayback(std::string deviceId, options_t options = options_t());
+    void transferMyPlayback(std::string deviceId, options_t options = options_t());
 
-    void Resume(options_t options = options_t());
+    void resume(options_t options = options_t());
 
-    void Pause(options_t options = options_t());
+    void pause(options_t options = options_t());
 
-    void SkipToNext(options_t options = options_t());
+    void skipToNext(options_t options = options_t());
 
-    void SkipToPrevious(options_t options = options_t());
+    void skipToPrevious(options_t options = options_t());
 
-    void SetRepeat(std::string state, options_t options = options_t());
+    void setRepeat(std::string state, options_t options = options_t());
 
-    void SetVolume(int volumePercent, options_t options = options_t());
+    void setVolume(int volumePercent, options_t options = options_t());
 
-    void ToggleShuffle(bool state, options_t options = options_t());
+    void toggleShuffle(bool state, options_t options = options_t());
 
  private:
     std::string authToken;

@@ -13,16 +13,16 @@
 
 class UserPublic {
  public:
-    UserPublic(nlohmann::json userJson);
+    explicit UserPublic(nlohmann::json userJson);
 
-    std::string GetDisplayName() const;
-    std::map<std::string, std::string> GetExternalUrls() const;
-    std::shared_ptr<Followers> GetFollowers() const;
-    std::string GetHref() const;
-    std::string GetId() const;
-    std::vector<std::shared_ptr<Image>> GetImages() const;
-    std::string GetType() const;
-    std::string GetUri() const;
+    [[nodiscard]] const std::string& getDisplayName() const;
+    [[nodiscard]] const std::map<std::string, std::string>& getExternalUrls() const;
+    [[nodiscard]] std::shared_ptr<Followers> getFollowers() const;
+    [[nodiscard]] const std::string& getHref() const;
+    [[nodiscard]] const std::string& getId() const;
+    [[nodiscard]] const std::vector<std::shared_ptr<Image>>& getImages() const;
+    [[nodiscard]] const std::string& getType() const;
+    [[nodiscard]] const std::string& getUri() const;
 
  private:
     std::string displayName;

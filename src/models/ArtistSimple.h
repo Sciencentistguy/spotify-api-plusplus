@@ -13,14 +13,14 @@
 
 class ArtistSimple {
  public:
-    ArtistSimple(nlohmann::json artistJson);
+    explicit ArtistSimple(nlohmann::json artistJson);
 
-    std::map<std::string, std::string> GetExternalUrls() const;
-    std::string GetHref() const;
-    std::string GetId() const;
-    std::string GetName() const;
-    std::string GetType() const;
-    std::string GetUri() const;
+    [[nodiscard]] const std::map<std::string, std::string>& getExternalUrls() const;
+    [[nodiscard]] const std::string& getHref() const;
+    [[nodiscard]] const std::string& getId() const;
+    [[nodiscard]] const std::string& getName() const;
+    [[nodiscard]] const std::string& getType() const;
+    [[nodiscard]] const std::string& getUri() const;
 
  private:
     std::map<std::string, std::string> externalUrls;

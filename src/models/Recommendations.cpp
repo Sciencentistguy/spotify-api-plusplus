@@ -1,16 +1,18 @@
 #include "Recommendations.h"
 
+#include <memory>
+
 Recommendations::Recommendations(nlohmann::json reccomendationsJson) {
-    for (nlohmann::json json : reccomendationsJson["seeds"])
-        seeds.push_back(std::shared_ptr<RecommendationsSeed>(new RecommendationsSeed(json)));
-    for (nlohmann::json json : reccomendationsJson["tracks"])
-        tracks.push_back(std::shared_ptr<Track>(new Track(json)));
+    for (const auto& json : reccomendationsJson["seeds"])
+        seeds.push_back(std::make_shared<RecommendationsSeed>(json));
+    for (const auto& json : reccomendationsJson["tracks"])
+        tracks.push_back(std::make_shared<Track>(json));
 }
 
-std::vector<std::shared_ptr<RecommendationsSeed>> Recommendations::GetSeeds() const {
+const std::vector<std::shared_ptr<RecommendationsSeed>>& Recommendations::getSeeds() const {
     return seeds;
 }
 
-std::vector<std::shared_ptr<Track>> Recommendations::GetTracks() const {
+const std::vector<std::shared_ptr<Track>>& Recommendations::getTracks() const {
     return tracks;
 }

@@ -17,10 +17,10 @@
 
 class Playlist : public PlaylistSimple {
  public:
-    Playlist(nlohmann::json playlistJson);
+    explicit Playlist(nlohmann::json playlistJson);
 
-    std::string GetDescription() const;
-    std::shared_ptr<Followers> GetFollowers() const;
+    [[nodiscard]] const std::string& getDescription() const;
+    [[nodiscard]] std::shared_ptr<Followers> getFollowers() const;
 
  private:
     std::string description;

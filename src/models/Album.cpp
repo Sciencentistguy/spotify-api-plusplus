@@ -1,13 +1,15 @@
 #include "Album.h"
 
+#include <memory>
+
 #include "TrackSimple.h"
 
 Album::Album(nlohmann::json albumJson) : AlbumSimple::AlbumSimple(albumJson) {
-    for (nlohmann::json json : albumJson["copyrights"])
-        copyrights.push_back(std::shared_ptr<Copyright>(new Copyright(json)));
+    for (const auto& json : albumJson["copyrights"])
+        copyrights.push_back(std::make_shared<Copyright>(json));
     for (auto it = albumJson["external_ids"].begin(); it != albumJson["external_ids"].end(); ++it)
         externalIds[it.key()] = it.value();
-    for (std::string genre : albumJson["genres"])
+    for (const auto & genre : albumJson["genres"])
         genres.push_back(genre);
     popularity = albumJson["popularity"];
     releaseDate = albumJson["release_date"];
@@ -17,34 +19,34 @@ Album::Album(nlohmann::json albumJson) : AlbumSimple::AlbumSimple(albumJson) {
 
 Album::~Album() = default;
 
-std::vector<std::shared_ptr<Copyright>> Album::GetCopyrights() const {
+const std::vector<std::shared_ptr<Copyright>>& Album::getCopyrights() const {
     return copyrights;
 }
 
-std::map<std::string, std::string> Album::GetExternalIds() const {
+const std::map<std::string, std::string>& Album::getExternalIds() const {
     return externalIds;
 }
 
-std::vector<std::string> Album::GetGenres() const {
+const std::vector<std::string>& Album::getGenres() const {
     return genres;
 }
 
-std::string Album::GetLabel() const {
+const std::string& Album::getLabel() const {
     return label;
 }
 
-int Album::GetPopularity() const {
+int Album::getPopularity() const {
     return popularity;
 }
 
-std::string Album::GetReleaseDate() const {
+const std::string& Album::getReleaseDate() const {
     return releaseDate;
 }
 
-std::string Album::GetReleaseDatePrecision() const {
+const std::string& Album::getReleaseDatePrecision() const {
     return releaseDatePrecision;
 }
 
-Pager<TrackSimple> Album::GetTracks() const {
+const Pager<TrackSimple>& Album::getTracks() const {
     return tracks;
 }

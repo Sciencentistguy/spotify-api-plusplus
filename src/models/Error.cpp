@@ -5,10 +5,10 @@ Error::Error(nlohmann::json pagerJson) {
     message = pagerJson["message"];
 }
 
-int Error::GetStatus() const {
+int Error::getStatus() const {
     return status;
 }
 
-std::string Error::GetMessage() const {
+const std::string& Error::getMessage() const {
     return message;
 }

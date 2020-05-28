@@ -7,18 +7,18 @@ User::User(nlohmann::json userJson) : UserPublic::UserPublic(userJson) {
     product = userJson["product"];
 }
 
-std::string User::GetBirthdate() const {
+const std::string& User::getBirthdate() const {
     return birthdate;
 }
 
-std::string User::GetCountry() const {
+const std::string& User::getCountry() const {
     return country;
 }
 
-std::string User::GetEmail() const {
+const std::string& User::getEmail() const {
     return email;
 }
 
-std::string User::GetProduct() const {
+const std::string& User::getProduct() const {
     return product;
 }

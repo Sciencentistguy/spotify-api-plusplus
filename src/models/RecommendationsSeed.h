@@ -7,14 +7,14 @@
 
 class RecommendationsSeed {
  public:
-    RecommendationsSeed(nlohmann::json reccomendationsJson);
+    explicit RecommendationsSeed(nlohmann::json reccomendationsJson);
 
-    int GetAfterFilteringSize() const;
-    int GetAfterRelinkingSize() const;
-    std::string GetHref() const;
-    std::string GetId() const;
-    int GetInitialPoolSize() const;
-    std::string GetType() const;
+    [[nodiscard]] int getAfterFilteringSize() const;
+    [[nodiscard]] int getAfterRelinkingSize() const;
+    [[nodiscard]] const std::string& getHref() const;
+    [[nodiscard]] const std::string& getId() const;
+    [[nodiscard]] int getInitialPoolSize() const;
+    [[nodiscard]] const std::string& getType() const;
 
  private:
     int afterFilteringSize;

@@ -1,14 +1,16 @@
 #include "SavedTrack.h"
 
+#include <memory>
+
 SavedTrack::SavedTrack(nlohmann::json trackJson) {
     addedAt = trackJson["added_at"];
-    track = std::shared_ptr<Track>(new Track(trackJson["track"]));
+    track = std::make_shared<Track>(trackJson["track"]);
 }
 
-std::string SavedTrack::GetAddedAt() const {
+const std::string& SavedTrack::getAddedAt() const {
     return addedAt;
 }
 
-std::shared_ptr<Track> SavedTrack::GetTrack() const {
+std::shared_ptr<Track> SavedTrack::getTrack() const {
     return track;
 }

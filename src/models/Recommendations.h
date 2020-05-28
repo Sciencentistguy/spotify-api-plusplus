@@ -11,10 +11,10 @@
 
 class Recommendations {
  public:
-    Recommendations(nlohmann::json reccomendationsJson);
+    explicit Recommendations(nlohmann::json reccomendationsJson);
 
-    std::vector<std::shared_ptr<RecommendationsSeed>> GetSeeds() const;
-    std::vector<std::shared_ptr<Track>> GetTracks() const;
+    [[nodiscard]] const std::vector<std::shared_ptr<RecommendationsSeed>>& getSeeds() const;
+    [[nodiscard]] const std::vector<std::shared_ptr<Track>>& getTracks() const;
 
  private:
     std::vector<std::shared_ptr<RecommendationsSeed>> seeds;

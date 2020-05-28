@@ -6,10 +6,10 @@
 
 class CurlException : public std::exception {
  public:
-    CurlException(int errorCode) : errorCode(errorCode) {
+    explicit CurlException(int errorCode) : errorCode(errorCode) {
     }
 
-    virtual const char* what() const throw() {
+    [[nodiscard]] const char* what() const noexcept override {
         std::stringstream errorStream;
         errorStream << "cURL error: " << errorCode;
         std::string message = errorStream.str();

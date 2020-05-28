@@ -14,12 +14,12 @@
 
 class User : public UserPublic {
  public:
-    User(nlohmann::json userJson);
+    explicit User(nlohmann::json userJson);
 
-    std::string GetBirthdate() const;
-    std::string GetCountry() const;
-    std::string GetEmail() const;
-    std::string GetProduct() const;
+    [[nodiscard]] const std::string& getBirthdate() const;
+    [[nodiscard]] const std::string& getCountry() const;
+    [[nodiscard]] const std::string& getEmail() const;
+    [[nodiscard]] const std::string& getProduct() const;
 
  private:
     std::string birthdate;

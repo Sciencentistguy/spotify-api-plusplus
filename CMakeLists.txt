@@ -1,6 +1,7 @@
-cmake_minimum_required(VERSION 3.5.1)
+cmake_minimum_required(VERSION 3.17.2)
 project(spotify-api-plusplus)
-set (CMAKE_CXX_STANDARD 11)
+
+set(CMAKE_CXX_STANDARD 17)
 
 set(SPOTIFY_PLUSPLUS_VERSION 1.0)
 
@@ -10,10 +11,6 @@ include_directories(${CURL_INCLUDE_DIRS})
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 add_subdirectory(src)
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/gtest/googletest/include)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/gtest/googlemock/include)
-add_subdirectory(gtest)
 
 add_executable(TestEndpoints tests/TestEndpoints.cpp)
 

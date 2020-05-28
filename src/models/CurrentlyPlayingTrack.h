@@ -8,13 +8,13 @@
 
 class CurrentlyPlayingTrack {
  public:
-    CurrentlyPlayingTrack(nlohmann::json currentlyPlayingJson);
+    explicit CurrentlyPlayingTrack(nlohmann::json currentlyPlayingJson);
 
-    Context GetContext() const;
-    int GetTimestamp() const;
-    int GetProgressMs() const;
-    bool IsPlaying() const;
-    Track GetItem() const;
+    [[nodiscard]] const Context& GetContext() const;
+    [[nodiscard]] int GetTimestamp() const;
+    [[nodiscard]] int GetProgressMs() const;
+    [[nodiscard]] bool IsPlaying() const;
+    [[nodiscard]] const Track& GetItem() const;
 
  private:
     Context context;

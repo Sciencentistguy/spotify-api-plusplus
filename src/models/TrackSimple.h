@@ -13,23 +13,23 @@
 
 class TrackSimple {
  public:
-    TrackSimple(nlohmann::json trackJson);
+    explicit TrackSimple(nlohmann::json trackJson);
 
-    std::vector<std::shared_ptr<ArtistSimple>> GetArtists() const;
-    std::vector<std::string> GetAvailableMarkets() const;
-    int GetDiscNumber() const;
-    int GetDurationMs() const;
-    bool IsExplicit() const;
-    std::map<std::string, std::string> GetExternalUrls() const;
-    std::string GetHref() const;
-    std::string GetId() const;
-    bool IsPlayable() const;
-    std::shared_ptr<TrackLink> GetLinkedFrom() const;
-    std::string GetName() const;
-    std::string GetPreviewUrl() const;
-    int GetTrackNumber() const;
-    std::string GetType() const;
-    std::string GetUri() const;
+    [[nodiscard]] const std::vector<std::shared_ptr<ArtistSimple>>& getArtists() const;
+    [[nodiscard]] const std::vector<std::string>& getAvailableMarkets() const;
+    [[nodiscard]] int getDiscNumber() const;
+    [[nodiscard]] int getDurationMs() const;
+    [[nodiscard]] bool getIsExplicit() const;
+    [[nodiscard]] const std::map<std::string, std::string>& getExternalUrls() const;
+    [[nodiscard]] const std::string& getHref() const;
+    [[nodiscard]] const std::string& getId() const;
+    [[nodiscard]] bool isPlayable() const;
+    [[nodiscard]] std::shared_ptr<TrackLink> getLinkedFrom() const;
+    [[nodiscard]] const std::string& getName() const;
+    [[nodiscard]] const std::string& getPreviewUrl() const;
+    [[nodiscard]] int getTrackNumber() const;
+    [[nodiscard]] const std::string& getType() const;
+    [[nodiscard]] const std::string& getUri() const;
 
  private:
     std::vector<std::shared_ptr<ArtistSimple>> artists;
@@ -40,7 +40,7 @@ class TrackSimple {
     std::map<std::string, std::string> externalUrls;
     std::string href;
     std::string id;
-    bool isPlayable;
+    bool playable;
     std::shared_ptr<TrackLink> linkedFrom;
     std::string name;
     std::string previewUrl;

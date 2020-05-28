@@ -5,10 +5,10 @@ Copyright::Copyright(nlohmann::json copyrightJson) {
     type = copyrightJson["type"];
 }
 
-std::string Copyright::GetText() const {
+const std::string& Copyright::getText() const {
     return text;
 }
 
-std::string Copyright::GetType() const {
+const std::string& Copyright::getType() const {
     return type;
 }

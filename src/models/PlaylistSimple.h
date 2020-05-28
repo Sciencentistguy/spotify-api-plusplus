@@ -16,23 +16,23 @@
 
 class PlaylistSimple {
  public:
-    PlaylistSimple(nlohmann::json playlistJson);
+    explicit PlaylistSimple(nlohmann::json playlistJson);
 
-    bool IsCollaborative() const;
-    std::map<std::string, std::string> GetExternalUrls() const;
-    std::string GetHref() const;
-    std::string GetId() const;
-    std::vector<std::shared_ptr<Image>> GetImages() const;
-    std::string GetName() const;
-    std::shared_ptr<UserPublic> GetOwner() const;
-    bool IsPublic() const;
-    std::string GetSnapshotId() const;
-    Pager<PlaylistTrack> GetTracks() const;
-    std::string GetType() const;
-    std::string GetUri() const;
+    [[nodiscard]] bool isCollaborative() const;
+    [[nodiscard]] const std::map<std::string, std::string>& getExternalUrls() const;
+    [[nodiscard]] const std::string& getHref() const;
+    [[nodiscard]] const std::string& getId() const;
+    [[nodiscard]] const std::vector<std::shared_ptr<Image>>& getImages() const;
+    [[nodiscard]] const std::string& getName() const;
+    [[nodiscard]] const std::shared_ptr<UserPublic>& getOwner() const;
+    [[nodiscard]] bool getIsPublic() const;
+    [[nodiscard]] const std::string& getSnapshotId() const;
+    [[nodiscard]] const Pager<PlaylistTrack>& getTracks() const;
+    [[nodiscard]] const std::string& getType() const;
+    [[nodiscard]] const std::string& getUri() const;
 
  private:
-    bool isCollaborative;
+    bool collaborative;
     std::map<std::string, std::string> externalUrls;
     std::string href;
     std::string id;

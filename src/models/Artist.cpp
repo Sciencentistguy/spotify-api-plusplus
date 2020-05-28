@@ -1,26 +1,28 @@
 #include "Artist.h"
 
+#include <memory>
+
 Artist::Artist(nlohmann::json artistJson) : ArtistSimple::ArtistSimple(artistJson) {
-    followers = std::shared_ptr<Followers>(new Followers(artistJson["followers"]));
-    for (std::string genre : artistJson["genres"])
+    followers = std::make_shared<Followers>(artistJson["followers"]);
+    for (const auto& genre : artistJson["genres"])
         genres.push_back(genre);
-    for (nlohmann::json json : artistJson["images"])
-        images.push_back(std::shared_ptr<Image>(new Image(json)));
+    for (const auto& json : artistJson["images"])
+        images.push_back(std::make_shared<Image>(json));
     popularity = artistJson["popularity"];
 }
 
-std::shared_ptr<Followers> Artist::GetFollowers() const {
+std::shared_ptr<Followers> Artist::getFollowers() const {
     return followers;
 }
 
-std::vector<std::string> Artist::GetGenres() const {
+const std::vector<std::string>& Artist::getGenres() const {
     return genres;
 }
 
-std::vector<std::shared_ptr<Image>> Artist::GetImages() const {
+const std::vector<std::shared_ptr<Image>>& Artist::getImages() const {
     return images;
 }
 
-int Artist::GetPopularity() const {
+int Artist::getPopularity() const {
     return popularity;
 }

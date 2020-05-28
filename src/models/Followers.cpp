@@ -10,10 +10,10 @@ Followers::Followers(nlohmann::json followersJson) {
         total = followersJson["total"];
 }
 
-std::string Followers::GetHref() const {
+const std::string& Followers::getHref() const {
     return href;
 }
 
-int Followers::GetTotal() const {
+int Followers::getTotal() const {
     return total;
 }

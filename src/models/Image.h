@@ -7,11 +7,11 @@
 
 class Image {
  public:
-    Image(nlohmann::json imageJson);
+    explicit Image(nlohmann::json imageJson);
 
-    int GetHeight() const;
-    std::string GetUrl() const;
-    int GetWidth() const;
+    [[nodiscard]] int getHeight() const;
+    [[nodiscard]] const std::string& getUrl() const;
+    [[nodiscard]] int getWidth() const;
 
  private:
     int height;

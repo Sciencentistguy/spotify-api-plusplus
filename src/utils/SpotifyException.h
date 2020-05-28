@@ -3,17 +3,18 @@
 
 #include <exception>
 #include <sstream>
+#include <utility>
 
 #include "../models/Error.h"
 
 class SpotifyException : public std::exception {
  public:
-    SpotifyException(Error error) : error(error) {
+    explicit SpotifyException(Error error) : error(std::move(error)) {
     }
 
-    virtual const char* what() const throw() {
-        char* what = (char*) calloc(error.GetMessage().length(), sizeof(char));
-        strcpy(what, error.GetMessage().c_str());
+    [[nodiscard]] const char* what() const noexcept override {
+        char* what = (char*) calloc(error.getMessage().length(), sizeof(char));
+        strcpy(what, error.getMessage().c_str());
         return what;
     }
 

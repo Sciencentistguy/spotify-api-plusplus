@@ -18,17 +18,17 @@ class TrackSimple;
 
 class Album : public AlbumSimple {
  public:
-    Album(nlohmann::json albumJson);
+    explicit Album(nlohmann::json albumJson);
     ~Album();
 
-    std::vector<std::shared_ptr<Copyright>> GetCopyrights() const;
-    std::map<std::string, std::string> GetExternalIds() const;
-    std::vector<std::string> GetGenres() const;
-    std::string GetLabel() const;
-    int GetPopularity() const;
-    std::string GetReleaseDate() const;
-    std::string GetReleaseDatePrecision() const;
-    Pager<TrackSimple> GetTracks() const;
+    [[nodiscard]] const std::vector<std::shared_ptr<Copyright>>& getCopyrights() const;
+    [[nodiscard]] const std::map<std::string, std::string>& getExternalIds() const;
+    [[nodiscard]] const std::vector<std::string>& getGenres() const;
+    [[nodiscard]] const std::string& getLabel() const;
+    [[nodiscard]] int getPopularity() const;
+    [[nodiscard]] const std::string& getReleaseDate() const;
+    [[nodiscard]] const std::string& getReleaseDatePrecision() const;
+    [[nodiscard]] const Pager<TrackSimple>& getTracks() const;
 
  private:
     std::vector<std::shared_ptr<Copyright>> copyrights;

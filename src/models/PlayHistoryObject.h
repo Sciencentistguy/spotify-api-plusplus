@@ -8,11 +8,11 @@
 
 class PlayHistoryObject {
  public:
-    PlayHistoryObject(nlohmann::json playHistoryJson);
+    explicit PlayHistoryObject(nlohmann::json playHistoryJson);
 
-    TrackSimple GetTrack() const;
-    std::string GetPlayedAt() const;
-    Context GetContext() const;
+    [[nodiscard]] const TrackSimple& getTrack() const;
+    [[nodiscard]] const std::string& getPlayedAt() const;
+    [[nodiscard]] const Context& getContext() const;
 
  private:
     TrackSimple track;

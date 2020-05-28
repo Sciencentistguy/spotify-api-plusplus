@@ -10,15 +10,15 @@ template<class T>
 class Pager {
  public:
     Pager<T>();
-    Pager<T>(nlohmann::json pagerJson);
+    explicit Pager<T>(nlohmann::json pagerJson);
 
-    std::string GetHref() const;
-    std::vector<T> GetItems() const;
-    int GetLimit() const;
-    std::string GetNext() const;
-    int GetOffset() const;
-    std::string GetPrevious() const;
-    int GetTotal() const;
+    [[nodiscard]] const std::string& getHref() const;
+    [[nodiscard]] const std::vector<T>& getItems() const;
+    [[nodiscard]] int getLimit() const;
+    [[nodiscard]] const std::string& getNext() const;
+    [[nodiscard]] int getOffset() const;
+    [[nodiscard]] const std::string& getPrevious() const;
+    [[nodiscard]] int getTotal() const;
 
  private:
     std::string href;
@@ -37,7 +37,7 @@ template<typename T>
 Pager<T>::Pager(nlohmann::json pagerJson) {
     if (!pagerJson["href"].is_null())
         href = pagerJson["href"];
-    for (nlohmann::json json : pagerJson["items"])
+    for (const auto& json : pagerJson["items"])
         items.push_back(T(json));
     if (!pagerJson["limit"].is_null())
         limit = pagerJson["limit"];
@@ -51,37 +51,37 @@ Pager<T>::Pager(nlohmann::json pagerJson) {
 }
 
 template<typename T>
-std::string Pager<T>::GetHref() const {
+const std::string& Pager<T>::getHref() const {
     return href;
 }
 
 template<typename T>
-std::vector<T> Pager<T>::GetItems() const {
+const std::vector<T>& Pager<T>::getItems() const {
     return items;
 }
 
 template<typename T>
-int Pager<T>::GetLimit() const {
+int Pager<T>::getLimit() const {
     return limit;
 }
 
 template<typename T>
-std::string Pager<T>::GetNext() const {
+const std::string& Pager<T>::getNext() const {
     return next;
 }
 
 template<typename T>
-int Pager<T>::GetOffset() const {
+int Pager<T>::getOffset() const {
     return offset;
 }
 
 template<typename T>
-std::string Pager<T>::GetPrevious() const {
+const std::string& Pager<T>::getPrevious() const {
     return previous;
 }
 
 template<typename T>
-int Pager<T>::GetTotal() const {
+int Pager<T>::getTotal() const {
     return total;
 }
 

@@ -11,17 +11,17 @@
 
 class PlaylistTrack {
  public:
-    PlaylistTrack(nlohmann::json trackJson);
+    explicit PlaylistTrack(nlohmann::json trackJson);
 
-    std::string GetAddedAt() const;
-    std::shared_ptr<UserPublic> GetAddedBy() const;
-    bool IsLocal() const;
-    std::shared_ptr<Track> GetTrack() const;
+    [[nodiscard]] const std::string& getAddedAt() const;
+    [[nodiscard]] std::shared_ptr<UserPublic> getAddedBy() const;
+    [[nodiscard]] bool isLocal() const;
+    [[nodiscard]] std::shared_ptr<Track> getTrack() const;
 
  private:
     std::string addedAt;
     std::shared_ptr<UserPublic> addedBy;
-    bool isLocal;
+    bool local;
     std::shared_ptr<Track> track;
 };
 

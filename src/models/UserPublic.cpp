@@ -1,47 +1,49 @@
 #include "UserPublic.h"
 
+#include <memory>
+
 UserPublic::UserPublic(nlohmann::json userJson) {
     if (!userJson["display_name"].is_null())
         displayName = userJson["display_name"];
     for (auto it = userJson["external_urls"].begin(); it != userJson["external_urls"].end(); ++it)
         externalUrls[it.key()] = it.value();
-    followers = std::shared_ptr<Followers>(new Followers(userJson["followers"]));
+    followers = std::make_shared<Followers>(userJson["followers"]);
     href = userJson["href"];
     id = userJson["id"];
-    for (nlohmann::json json : userJson["images"])
-        images.push_back(std::shared_ptr<Image>(new Image(json)));
+    for (const auto& json : userJson["images"])
+        images.push_back(std::make_shared<Image>(json));
     type = userJson["type"];
     uri = userJson["uri"];
 }
 
-std::string UserPublic::GetDisplayName() const {
+const std::string& UserPublic::getDisplayName() const {
     return displayName;
 }
 
-std::map<std::string, std::string> UserPublic::GetExternalUrls() const {
+const std::map<std::string, std::string>& UserPublic::getExternalUrls() const {
     return externalUrls;
 }
 
-std::shared_ptr<Followers> UserPublic::GetFollowers() const {
+std::shared_ptr<Followers> UserPublic::getFollowers() const {
     return followers;
 }
 
-std::string UserPublic::GetHref() const {
+const std::string& UserPublic::getHref() const {
     return href;
 }
 
-std::string UserPublic::GetId() const {
+const std::string& UserPublic::getId() const {
     return id;
 }
 
-std::vector<std::shared_ptr<Image>> UserPublic::GetImages() const {
+const std::vector<std::shared_ptr<Image>>& UserPublic::getImages() const {
     return images;
 }
 
-std::string UserPublic::GetType() const {
+const std::string& UserPublic::getType() const {
     return type;
 }
 
-std::string UserPublic::GetUri() const {
+const std::string& UserPublic::getUri() const {
     return uri;
 }

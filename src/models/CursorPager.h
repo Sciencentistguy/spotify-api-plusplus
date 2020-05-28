@@ -1,6 +1,7 @@
 #ifndef SPOTIFY_PLUSPLUS_CURSORPAGER_H
 #define SPOTIFY_PLUSPLUS_CURSORPAGER_H
 
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -12,14 +13,14 @@ template<class T>
 class CursorPager {
  public:
     CursorPager<T>();
-    CursorPager<T>(nlohmann::json pagerJson);
+    explicit CursorPager<T>(nlohmann::json pagerJson);
 
-    std::string GetHref() const;
-    std::vector<T> GetItems() const;
-    int GetLimit() const;
-    std::string GetNext() const;
-    std::shared_ptr<Cursor> GetCursors() const;
-    int GetTotal() const;
+    [[nodiscard]] const std::string& getHref() const;
+    [[nodiscard]] const std::vector<T>& getItems() const;
+    [[nodiscard]] int getLimit() const;
+    [[nodiscard]] const std::string& getNext() const;
+    [[nodiscard]] std::shared_ptr<Cursor> getCursors() const;
+    [[nodiscard]] int getTotal() const;
 
  private:
     std::string href;
@@ -41,37 +42,37 @@ CursorPager<T>::CursorPager(nlohmann::json pagerJson) {
     limit = pagerJson["limit"];
     if (!pagerJson["next"].is_null())
         next = pagerJson["next"];
-    cursors = std::shared_ptr<Cursor>(new Cursor(pagerJson["cursors"]));
+    cursors = std::make_shared<Cursor>(pagerJson["cursors"]);
     total = pagerJson["total"];
 }
 
 template<typename T>
-std::string CursorPager<T>::GetHref() const {
+const std::string& CursorPager<T>::getHref() const {
     return href;
 }
 
 template<typename T>
-std::vector<T> CursorPager<T>::GetItems() const {
+const std::vector<T>& CursorPager<T>::getItems() const {
     return items;
 }
 
 template<typename T>
-int CursorPager<T>::GetLimit() const {
+int CursorPager<T>::getLimit() const {
     return limit;
 }
 
 template<typename T>
-std::string CursorPager<T>::GetNext() const {
+const std::string& CursorPager<T>::getNext() const {
     return next;
 }
 
 template<typename T>
-std::shared_ptr<Cursor> CursorPager<T>::GetCursors() const {
+std::shared_ptr<Cursor> CursorPager<T>::getCursors() const {
     return cursors;
 }
 
 template<typename T>
-int CursorPager<T>::GetTotal() const {
+int CursorPager<T>::getTotal() const {
     return total;
 }
 
