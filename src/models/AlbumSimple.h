@@ -1,19 +1,20 @@
 #ifndef SPOTIFY_PLUSPLUS_ALBUMSIMPE_H
 #define SPOTIFY_PLUSPLUS_ALBUMSIMPE_H
 
-#include <string>
 #include <map>
-#include <vector>
 #include <memory>
-#include "Pager.h"
-#include "Copyright.h"
-#include "Image.h"
-#include "ArtistSimple.h"
+#include <string>
+#include <vector>
+
 #include <nlohmann/json.hpp>
 
-class AlbumSimple
-{
-public:
+#include "ArtistSimple.h"
+#include "Copyright.h"
+#include "Image.h"
+#include "Pager.h"
+
+class AlbumSimple {
+ public:
     AlbumSimple(nlohmann::json albumJson);
 
     std::string GetAlbumType() const;
@@ -27,7 +28,7 @@ public:
     std::string GetType() const;
     std::string GetUri() const;
 
-private:
+ private:
     std::string albumType;
     std::vector<std::shared_ptr<ArtistSimple>> artists;
     std::vector<std::string> availableMarkets;
@@ -39,6 +40,5 @@ private:
     std::string type;
     std::string uri;
 };
-
 
 #endif

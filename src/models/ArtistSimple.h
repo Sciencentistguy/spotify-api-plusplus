@@ -1,17 +1,18 @@
 #ifndef SPOTIFY_PLUSPLUS_ARTISTSIMPLE_H
 #define SPOTIFY_PLUSPLUS_ARTISTSIMPLE_H
 
-#include <string>
 #include <map>
 #include <memory>
+#include <string>
 #include <vector>
-#include "Followers.h"
-#include "Image.h"
+
 #include <nlohmann/json.hpp>
 
-class ArtistSimple
-{
-public:
+#include "Followers.h"
+#include "Image.h"
+
+class ArtistSimple {
+ public:
     ArtistSimple(nlohmann::json artistJson);
 
     std::map<std::string, std::string> GetExternalUrls() const;
@@ -21,7 +22,7 @@ public:
     std::string GetType() const;
     std::string GetUri() const;
 
-private:
+ private:
     std::map<std::string, std::string> externalUrls;
     std::string href;
     std::string id;
@@ -29,6 +30,5 @@ private:
     std::string type;
     std::string uri;
 };
-
 
 #endif

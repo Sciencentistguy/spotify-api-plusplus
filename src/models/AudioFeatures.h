@@ -2,13 +2,13 @@
 #define SPOTIFY_PLUSPLUS_AUDIOFEATURES_H
 
 #include <string>
+
 #include <nlohmann/json.hpp>
 
-class AudioFeatures
-{
-public:
+class AudioFeatures {
+ public:
     AudioFeatures(nlohmann::json audioFeaturesJson);
-    
+
     float GetAcousticness() const;
     std::string GetAnalysisUrl() const;
     float GetDanceability() const;
@@ -28,7 +28,7 @@ public:
     std::string GetUri() const;
     float GetValence() const;
 
-private:
+ private:
     float acousticness;
     std::string analysisUrl;
     float danceability;
@@ -48,6 +48,5 @@ private:
     std::string uri;
     float valence;
 };
-
 
 #endif

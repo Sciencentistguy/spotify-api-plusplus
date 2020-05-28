@@ -2,20 +2,19 @@
 #define SPOTIFY_PLUSPLUS_FOLLOWERS_H
 
 #include <string>
+
 #include <nlohmann/json.hpp>
 
-class Followers
-{
-public:
+class Followers {
+ public:
     Followers(nlohmann::json followersJson);
 
     std::string GetHref() const;
     int GetTotal() const;
 
-private:
+ private:
     std::string href;
     int total;
 };
-
 
 #endif

@@ -1,18 +1,19 @@
 #ifndef SPOTIFY_PLUSPLUS_USER_H
 #define SPOTIFY_PLUSPLUS_USER_H
 
-#include <string>
-#include <vector>
 #include <map>
 #include <memory>
+#include <string>
+#include <vector>
+
+#include <nlohmann/json.hpp>
+
 #include "Followers.h"
 #include "Image.h"
 #include "UserPublic.h"
-#include <nlohmann/json.hpp>
 
-class User : public UserPublic
-{
-public:
+class User : public UserPublic {
+ public:
     User(nlohmann::json userJson);
 
     std::string GetBirthdate() const;
@@ -20,12 +21,11 @@ public:
     std::string GetEmail() const;
     std::string GetProduct() const;
 
-private:
+ private:
     std::string birthdate;
     std::string country;
     std::string email;
     std::string product;
 };
-
 
 #endif

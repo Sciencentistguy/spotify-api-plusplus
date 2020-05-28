@@ -1,22 +1,23 @@
 #ifndef SPOTIFY_PLUSPLUS_ALBUM_H
 #define SPOTIFY_PLUSPLUS_ALBUM_H
 
-#include <string>
 #include <map>
-#include <vector>
 #include <memory>
+#include <string>
+#include <vector>
+
 #include <nlohmann/json.hpp>
-#include "Pager.h"
+
+#include "AlbumSimple.h"
+#include "Artist.h"
 #include "Copyright.h"
 #include "Image.h"
-#include "Artist.h"
-#include "AlbumSimple.h"
+#include "Pager.h"
 
 class TrackSimple;
 
-class Album : public AlbumSimple
-{
-public:
+class Album : public AlbumSimple {
+ public:
     Album(nlohmann::json albumJson);
     ~Album();
 
@@ -29,8 +30,7 @@ public:
     std::string GetReleaseDatePrecision() const;
     Pager<TrackSimple> GetTracks() const;
 
-private:
-
+ private:
     std::vector<std::shared_ptr<Copyright>> copyrights;
     std::map<std::string, std::string> externalIds;
     std::vector<std::string> genres;
@@ -39,7 +39,6 @@ private:
     std::string releaseDate;
     std::string releaseDatePrecision;
     Pager<TrackSimple> tracks;
-
 };
 
 #endif

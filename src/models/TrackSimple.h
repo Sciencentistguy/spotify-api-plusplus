@@ -1,17 +1,18 @@
 #ifndef SPOTIFY_PLUSPLUS_TRACKSIMPLE_H
 #define SPOTIFY_PLUSPLUS_TRACKSIMPLE_H
 
-#include <string>
 #include <map>
-#include <vector>
 #include <memory>
-#include "TrackLink.h"
-#include "Artist.h"
+#include <string>
+#include <vector>
+
 #include <nlohmann/json.hpp>
 
-class TrackSimple
-{
-public:
+#include "Artist.h"
+#include "TrackLink.h"
+
+class TrackSimple {
+ public:
     TrackSimple(nlohmann::json trackJson);
 
     std::vector<std::shared_ptr<ArtistSimple>> GetArtists() const;
@@ -30,7 +31,7 @@ public:
     std::string GetType() const;
     std::string GetUri() const;
 
-private:
+ private:
     std::vector<std::shared_ptr<ArtistSimple>> artists;
     std::vector<std::string> availableMarkets;
     int discNumber;
@@ -47,6 +48,5 @@ private:
     std::string type;
     std::string uri;
 };
-
 
 #endif

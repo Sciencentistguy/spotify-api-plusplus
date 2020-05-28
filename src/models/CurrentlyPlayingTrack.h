@@ -1,13 +1,13 @@
 #ifndef SPOTIFY_API_PLUSPLUS_CURRENTLYPLAYINGTRACK_H
 #define SPOTIFY_API_PLUSPLUS_CURRENTLYPLAYINGTRACK_H
 
-#include "Context.h"
-#include "Track.h"
 #include <nlohmann/json.hpp>
 
-class CurrentlyPlayingTrack
-{
-public:
+#include "Context.h"
+#include "Track.h"
+
+class CurrentlyPlayingTrack {
+ public:
     CurrentlyPlayingTrack(nlohmann::json currentlyPlayingJson);
 
     Context GetContext() const;
@@ -16,13 +16,12 @@ public:
     bool IsPlaying() const;
     Track GetItem() const;
 
-private:
+ private:
     Context context;
     int timestamp;
     int progressMs;
     bool isPlaying;
     Track item;
 };
-
 
 #endif

@@ -3,9 +3,8 @@
 
 #include <nlohmann/json.hpp>
 
-class Context
-{
-public:
+class Context {
+ public:
     Context(nlohmann::json contextJson);
 
     std::string GetUri() const;
@@ -13,12 +12,11 @@ public:
     std::map<std::string, std::string> GetExternalUrls() const;
     std::string GetType() const;
 
-private:
+ private:
     std::string uri;
     std::string href;
     std::map<std::string, std::string> externalUrls;
     std::string type;
 };
-
 
 #endif

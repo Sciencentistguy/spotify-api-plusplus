@@ -1,20 +1,21 @@
 #ifndef SPOTIFY_PLUSPLUS_TRACK_H
 #define SPOTIFY_PLUSPLUS_TRACK_H
 
-#include <string>
 #include <map>
-#include <vector>
 #include <memory>
-#include "TrackLink.h"
-#include "Artist.h"
-#include "TrackSimple.h"
+#include <string>
+#include <vector>
+
 #include <nlohmann/json.hpp>
+
+#include "Artist.h"
+#include "TrackLink.h"
+#include "TrackSimple.h"
 
 class AlbumSimple;
 
-class Track : public TrackSimple
-{
-public:
+class Track : public TrackSimple {
+ public:
     Track(nlohmann::json trackJson);
     ~Track();
 
@@ -22,7 +23,7 @@ public:
     std::map<std::string, std::string> GetExternalIds() const;
     int GetPopularity() const;
 
-private:
+ private:
     std::shared_ptr<AlbumSimple> album;
     std::map<std::string, std::string> externalIds;
     int popularity;

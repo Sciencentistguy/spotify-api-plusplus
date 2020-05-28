@@ -2,23 +2,21 @@
 #define SPOTIFY_PLUSPLUS_IMAGE_H
 
 #include <string>
+
 #include <nlohmann/json.hpp>
 
-
-class Image
-{
-public:
+class Image {
+ public:
     Image(nlohmann::json imageJson);
 
     int GetHeight() const;
     std::string GetUrl() const;
     int GetWidth() const;
 
-private:
+ private:
     int height;
     std::string url;
     int width;
 };
-
 
 #endif

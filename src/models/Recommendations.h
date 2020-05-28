@@ -1,24 +1,24 @@
 #ifndef SPOTIFY_PLUSPLUS_RECCOMENDATIONS_H
 #define SPOTIFY_PLUSPLUS_RECCOMENDATIONS_H
 
-#include <vector>
 #include <memory>
-#include "RecommendationsSeed.h"
-#include "Track.h"
+#include <vector>
+
 #include <nlohmann/json.hpp>
 
-class Recommendations
-{
-public:
+#include "RecommendationsSeed.h"
+#include "Track.h"
+
+class Recommendations {
+ public:
     Recommendations(nlohmann::json reccomendationsJson);
 
     std::vector<std::shared_ptr<RecommendationsSeed>> GetSeeds() const;
     std::vector<std::shared_ptr<Track>> GetTracks() const;
 
-private:
+ private:
     std::vector<std::shared_ptr<RecommendationsSeed>> seeds;
     std::vector<std::shared_ptr<Track>> tracks;
 };
-
 
 #endif

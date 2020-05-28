@@ -3,11 +3,12 @@
 
 #include <string>
 #include <vector>
+
 #include <nlohmann/json.hpp>
 
-template <class T> class Pager
-{
-public:
+template<class T>
+class Pager {
+ public:
     Pager<T>();
     Pager<T>(nlohmann::json pagerJson);
 
@@ -19,7 +20,7 @@ public:
     std::string GetPrevious() const;
     int GetTotal() const;
 
-private:
+ private:
     std::string href;
     std::vector<T> items;
     int limit;
@@ -29,15 +30,16 @@ private:
     int total;
 };
 
-template <typename T> Pager<T>::Pager() = default;
+template<typename T>
+Pager<T>::Pager() = default;
 
-template <typename T> Pager<T>::Pager(nlohmann::json pagerJson)
-{
+template<typename T>
+Pager<T>::Pager(nlohmann::json pagerJson) {
     if (!pagerJson["href"].is_null())
         href = pagerJson["href"];
-    for(nlohmann::json json : pagerJson["items"])
+    for (nlohmann::json json : pagerJson["items"])
         items.push_back(T(json));
-    if(!pagerJson["limit"].is_null())
+    if (!pagerJson["limit"].is_null())
         limit = pagerJson["limit"];
     if (!pagerJson["next"].is_null())
         next = pagerJson["next"];
@@ -48,40 +50,39 @@ template <typename T> Pager<T>::Pager(nlohmann::json pagerJson)
     total = pagerJson["total"];
 }
 
-template <typename T> std::string Pager<T>::GetHref() const
-{
+template<typename T>
+std::string Pager<T>::GetHref() const {
     return href;
 }
 
-template <typename T> std::vector<T> Pager<T>::GetItems() const
-{
+template<typename T>
+std::vector<T> Pager<T>::GetItems() const {
     return items;
 }
 
-template <typename T> int Pager<T>::GetLimit() const
-{
+template<typename T>
+int Pager<T>::GetLimit() const {
     return limit;
 }
 
-template <typename T> std::string Pager<T>::GetNext() const
-{
+template<typename T>
+std::string Pager<T>::GetNext() const {
     return next;
 }
 
-template <typename T> int Pager<T>::GetOffset() const
-{
+template<typename T>
+int Pager<T>::GetOffset() const {
     return offset;
 }
 
-template <typename T> std::string Pager<T>::GetPrevious() const
-{
+template<typename T>
+std::string Pager<T>::GetPrevious() const {
     return previous;
 }
 
-template <typename T> int Pager<T>::GetTotal() const
-{
+template<typename T>
+int Pager<T>::GetTotal() const {
     return total;
 }
-
 
 #endif

@@ -2,20 +2,19 @@
 #define SPOTIFY_PLUSPLUS_ERROR_H
 
 #include <string>
+
 #include <nlohmann/json.hpp>
 
-class Error
-{
-public:
+class Error {
+ public:
     Error(nlohmann::json pagerJson);
 
     int GetStatus() const;
     std::string GetMessage() const;
 
-private:
+ private:
     int status;
     std::string message;
 };
-
 
 #endif

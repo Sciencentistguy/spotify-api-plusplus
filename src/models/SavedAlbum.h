@@ -2,21 +2,21 @@
 #define SPOTIFY_PLUSPLUS_SAVEDALBUM_H
 
 #include <string>
-#include "Album.h"
+
 #include <nlohmann/json.hpp>
 
-class SavedAlbum
-{
-public:
+#include "Album.h"
+
+class SavedAlbum {
+ public:
     SavedAlbum(nlohmann::json albumJson);
 
     std::string GetAddedAt() const;
     std::shared_ptr<Album> GetAlbum() const;
 
-private:
+ private:
     std::string addedAt;
     std::shared_ptr<Album> album;
 };
-
 
 #endif

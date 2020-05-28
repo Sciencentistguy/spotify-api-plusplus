@@ -1,17 +1,16 @@
 #include "PlaylistSimple.h"
 
-PlaylistSimple::PlaylistSimple(nlohmann::json playlistJson)
-{
+PlaylistSimple::PlaylistSimple(nlohmann::json playlistJson) {
     isCollaborative = playlistJson["collaborative"];
     for (auto it = playlistJson["external_urls"].begin(); it != playlistJson["external_urls"].end(); ++it)
         externalUrls[it.key()] = it.value();
     href = playlistJson["href"];
     id = playlistJson["id"];
-    for(nlohmann::json json : playlistJson["images"])
+    for (nlohmann::json json : playlistJson["images"])
         images.push_back(std::shared_ptr<Image>(new Image(json)));
     name = playlistJson["name"];
     owner = std::shared_ptr<UserPublic>(new UserPublic(playlistJson["owner"]));
-    if(playlistJson["public"].is_null())
+    if (playlistJson["public"].is_null())
         isPublic = false;
     else
         isPublic = playlistJson["public"];
@@ -21,62 +20,50 @@ PlaylistSimple::PlaylistSimple(nlohmann::json playlistJson)
     uri = playlistJson["uri"];
 }
 
-bool PlaylistSimple::IsCollaborative() const
-{
+bool PlaylistSimple::IsCollaborative() const {
     return isCollaborative;
 }
 
-std::map<std::string, std::string> PlaylistSimple::GetExternalUrls() const
-{
+std::map<std::string, std::string> PlaylistSimple::GetExternalUrls() const {
     return externalUrls;
 }
 
-std::string PlaylistSimple::GetHref() const
-{
+std::string PlaylistSimple::GetHref() const {
     return href;
 }
 
-std::string PlaylistSimple::GetId() const
-{
+std::string PlaylistSimple::GetId() const {
     return id;
 }
 
-std::vector<std::shared_ptr<Image>> PlaylistSimple::GetImages() const
-{
+std::vector<std::shared_ptr<Image>> PlaylistSimple::GetImages() const {
     return images;
 }
 
-std::string PlaylistSimple::GetName() const
-{
+std::string PlaylistSimple::GetName() const {
     return name;
 }
 
-std::shared_ptr<UserPublic> PlaylistSimple::GetOwner() const
-{
+std::shared_ptr<UserPublic> PlaylistSimple::GetOwner() const {
     return owner;
 }
 
-bool PlaylistSimple::IsPublic() const
-{
+bool PlaylistSimple::IsPublic() const {
     return isPublic;
 }
 
-std::string PlaylistSimple::GetSnapshotId() const
-{
+std::string PlaylistSimple::GetSnapshotId() const {
     return snapshotId;
 }
 
-Pager<PlaylistTrack> PlaylistSimple::GetTracks() const
-{
+Pager<PlaylistTrack> PlaylistSimple::GetTracks() const {
     return tracks;
 }
 
-std::string PlaylistSimple::GetType() const
-{
+std::string PlaylistSimple::GetType() const {
     return type;
 }
 
-std::string PlaylistSimple::GetUri() const
-{
+std::string PlaylistSimple::GetUri() const {
     return uri;
 }

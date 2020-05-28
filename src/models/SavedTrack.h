@@ -1,24 +1,23 @@
 #ifndef SPOTIFY_PLUSPLUS_SAVEDTRACK_H
 #define SPOTIFY_PLUSPLUS_SAVEDTRACK_H
 
-#include <string>
 #include <memory>
-#include "Track.h"
+#include <string>
+
 #include <nlohmann/json.hpp>
 
+#include "Track.h"
 
-class SavedTrack
-{
-public:
+class SavedTrack {
+ public:
     SavedTrack(nlohmann::json trackJson);
 
     std::string GetAddedAt() const;
     std::shared_ptr<Track> GetTrack() const;
 
-private:
+ private:
     std::string addedAt;
     std::shared_ptr<Track> track;
 };
-
 
 #endif

@@ -1,7 +1,6 @@
 #include "AudioFeatures.h"
 
-AudioFeatures::AudioFeatures(nlohmann::json audioFeaturesJson)
-{
+AudioFeatures::AudioFeatures(nlohmann::json audioFeaturesJson) {
     acousticness = audioFeaturesJson["acousticness"];
     analysisUrl = audioFeaturesJson["analysis_url"];
     danceability = audioFeaturesJson["danceability"];
@@ -22,92 +21,74 @@ AudioFeatures::AudioFeatures(nlohmann::json audioFeaturesJson)
     valence = audioFeaturesJson["valence"];
 }
 
-float AudioFeatures::GetAcousticness() const
-{
+float AudioFeatures::GetAcousticness() const {
     return acousticness;
 }
 
-std::string AudioFeatures::GetAnalysisUrl() const
-{
+std::string AudioFeatures::GetAnalysisUrl() const {
     return analysisUrl;
 }
 
-float AudioFeatures::GetDanceability() const
-{
+float AudioFeatures::GetDanceability() const {
     return danceability;
 }
 
-int AudioFeatures::GetDurationMs() const
-{
+int AudioFeatures::GetDurationMs() const {
     return durationMs;
 }
 
-float AudioFeatures::GetEnergy() const
-{
+float AudioFeatures::GetEnergy() const {
     return energy;
 }
 
-std::string AudioFeatures::GetId() const
-{
+std::string AudioFeatures::GetId() const {
     return id;
 }
 
-float AudioFeatures::GetInstrumentalness() const
-{
+float AudioFeatures::GetInstrumentalness() const {
     return instrumentalness;
 }
 
-int AudioFeatures::GetKey() const
-{
+int AudioFeatures::GetKey() const {
     return key;
 }
 
-float AudioFeatures::GetLiveness() const
-{
+float AudioFeatures::GetLiveness() const {
     return liveness;
 }
 
-float AudioFeatures::GetLoudness() const
-{
+float AudioFeatures::GetLoudness() const {
     return loudness;
 }
 
-int AudioFeatures::GetMode() const
-{
+int AudioFeatures::GetMode() const {
     return mode;
 }
 
-float AudioFeatures::GetSpeechiness() const
-{
+float AudioFeatures::GetSpeechiness() const {
     return speechiness;
 }
 
-float AudioFeatures::GetTempo() const
-{
+float AudioFeatures::GetTempo() const {
     return tempo;
 }
 
-int AudioFeatures::GetTimeSignature() const
-{
+int AudioFeatures::GetTimeSignature() const {
     return timeSignature;
 }
 
-std::string AudioFeatures::GetTrackHref() const
-{
+std::string AudioFeatures::GetTrackHref() const {
     return trackHref;
 }
 
-std::string AudioFeatures::GetType() const
-{
+std::string AudioFeatures::GetType() const {
     return type;
 }
 
-std::string AudioFeatures::GetUri() const
-{
+std::string AudioFeatures::GetUri() const {
     return uri;
 }
 
-float AudioFeatures::GetValence() const
-{
+float AudioFeatures::GetValence() const {
     return valence;
 }

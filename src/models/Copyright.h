@@ -2,20 +2,19 @@
 #define SPOTIFY_PLUSPLUS_COPYRIGHT_H
 
 #include <string>
+
 #include <nlohmann/json.hpp>
 
-class Copyright
-{
-public:
+class Copyright {
+ public:
     Copyright(nlohmann::json copyrightJson);
 
     std::string GetText() const;
     std::string GetType() const;
 
-private:
+ private:
     std::string text;
     std::string type;
 };
-
 
 #endif

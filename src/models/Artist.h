@@ -1,18 +1,19 @@
 #ifndef SPOTIFY_PLUSPLUS_ARTIST_H
 #define SPOTIFY_PLUSPLUS_ARTIST_H
 
-#include <string>
 #include <map>
 #include <memory>
+#include <string>
 #include <vector>
-#include "Followers.h"
-#include "Image.h"
-#include "ArtistSimple.h"
+
 #include <nlohmann/json.hpp>
 
-class Artist : public ArtistSimple
-{
-public:
+#include "ArtistSimple.h"
+#include "Followers.h"
+#include "Image.h"
+
+class Artist : public ArtistSimple {
+ public:
     Artist(nlohmann::json artistJson);
 
     std::shared_ptr<Followers> GetFollowers() const;
@@ -20,13 +21,11 @@ public:
     std::vector<std::shared_ptr<Image>> GetImages() const;
     int GetPopularity() const;
 
-private:
-
+ private:
     std::shared_ptr<Followers> followers;
     std::vector<std::string> genres;
     std::vector<std::shared_ptr<Image>> images;
     int popularity;
-
 };
 
 #endif

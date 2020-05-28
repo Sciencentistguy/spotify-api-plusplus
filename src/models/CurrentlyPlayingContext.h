@@ -1,14 +1,14 @@
 #ifndef SPOTIFY_API_PLUSPLUS_CURRENTLYPLAYINGCONTEXT_H
 #define SPOTIFY_API_PLUSPLUS_CURRENTLYPLAYINGCONTEXT_H
 
+#include <nlohmann/json.hpp>
+
 #include "Context.h"
 #include "Device.h"
 #include "Track.h"
-#include <nlohmann/json.hpp>
 
-class CurrentlyPlayingContext
-{
-public:
+class CurrentlyPlayingContext {
+ public:
     CurrentlyPlayingContext(nlohmann::json currentlyPlayingJson);
 
     Device GetDevice() const;
@@ -20,7 +20,7 @@ public:
     bool IsPlaying() const;
     Track GetItem() const;
 
-private:
+ private:
     Device device;
     std::string repeatState;
     bool shuffleState;
@@ -30,6 +30,5 @@ private:
     bool isPlaying;
     Track item;
 };
-
 
 #endif

@@ -3,9 +3,8 @@
 
 #include <nlohmann/json.hpp>
 
-class Device
-{
-public:
+class Device {
+ public:
     Device(nlohmann::json deviceJson);
 
     std::string GetId() const;
@@ -15,7 +14,7 @@ public:
     std::string GetType() const;
     int GetVolumePercent() const;
 
-private:
+ private:
     std::string id;
     bool isActive;
     bool isRestricted;
@@ -23,6 +22,5 @@ private:
     std::string type;
     int volumePercent;
 };
-
 
 #endif

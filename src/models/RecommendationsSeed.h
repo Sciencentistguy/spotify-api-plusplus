@@ -2,11 +2,11 @@
 #define SPOTIFY_PLUSPLUS_RECOMMENDATIONSSEED_H
 
 #include <string>
+
 #include <nlohmann/json.hpp>
 
-class RecommendationsSeed
-{
-public:
+class RecommendationsSeed {
+ public:
     RecommendationsSeed(nlohmann::json reccomendationsJson);
 
     int GetAfterFilteringSize() const;
@@ -16,7 +16,7 @@ public:
     int GetInitialPoolSize() const;
     std::string GetType() const;
 
-private:
+ private:
     int afterFilteringSize;
     int afterRelinkingSize;
     std::string href;
@@ -24,6 +24,5 @@ private:
     int initialPoolSize;
     std::string type;
 };
-
 
 #endif

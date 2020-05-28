@@ -2,24 +2,24 @@
 #define SPOTIFY_PLUSPLUS_SPOTIFYSERVICE_H
 
 #include <string>
-#include "models/Track.h"
-#include "models/AudioFeatures.h"
-#include "models/Playlist.h"
-#include "models/Category.h"
-#include "models/CursorPager.h"
-#include "models/SavedTrack.h"
-#include "models/SavedAlbum.h"
-#include "models/Recommendations.h"
+
 #include "models/Album.h"
-#include "models/PlayHistoryObject.h"
-#include "models/Device.h"
+#include "models/AudioFeatures.h"
+#include "models/Category.h"
 #include "models/CurrentlyPlayingContext.h"
 #include "models/CurrentlyPlayingTrack.h"
+#include "models/CursorPager.h"
+#include "models/Device.h"
+#include "models/PlayHistoryObject.h"
+#include "models/Playlist.h"
+#include "models/Recommendations.h"
+#include "models/SavedAlbum.h"
+#include "models/SavedTrack.h"
+#include "models/Track.h"
 
 typedef std::map<std::string, std::string> options_t;
-class SpotifyAPI
-{
-public:
+class SpotifyAPI {
+ public:
     SpotifyAPI();
 
     void setAuthToken(std::string authToken);
@@ -126,7 +126,8 @@ public:
 
     void RemoveTracksFromPlaylist(std::string userId, std::string playlistId, std::vector<std::string> trackUris, std::string snapshotId = "");
 
-    void RemoveTracksFromPlaylist(std::string userId, std::string playlistId, std::map<std::string, std::vector<int>> trackUrisToPositions, std::string snapshotId = "");
+    void RemoveTracksFromPlaylist(std::string userId, std::string playlistId, std::map<std::string, std::vector<int>> trackUrisToPositions,
+                                  std::string snapshotId = "");
 
     void RemoveTracksFromPlaylist(std::string userId, std::string playlistId, std::vector<int> positions, std::string snapshotId);
 
@@ -162,9 +163,8 @@ public:
 
     void ToggleShuffle(bool state, options_t options = options_t());
 
-private:
+ private:
     std::string authToken;
 };
-
 
 #endif

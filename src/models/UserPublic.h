@@ -1,17 +1,18 @@
 #ifndef SPOTIFY_PLUSPLUS_USERPUBLIC_H
 #define SPOTIFY_PLUSPLUS_USERPUBLIC_H
 
-#include <string>
-#include <vector>
 #include <map>
 #include <memory>
-#include "Followers.h"
-#include "Image.h"
+#include <string>
+#include <vector>
+
 #include <nlohmann/json.hpp>
 
-class UserPublic
-{
-public:
+#include "Followers.h"
+#include "Image.h"
+
+class UserPublic {
+ public:
     UserPublic(nlohmann::json userJson);
 
     std::string GetDisplayName() const;
@@ -23,7 +24,7 @@ public:
     std::string GetType() const;
     std::string GetUri() const;
 
-private:
+ private:
     std::string displayName;
     std::map<std::string, std::string> externalUrls;
     std::shared_ptr<Followers> followers;
@@ -33,6 +34,5 @@ private:
     std::string type;
     std::string uri;
 };
-
 
 #endif

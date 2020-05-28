@@ -1,7 +1,6 @@
 #include "RecommendationsSeed.h"
 
-RecommendationsSeed::RecommendationsSeed(nlohmann::json reccomendationsJson)
-{
+RecommendationsSeed::RecommendationsSeed(nlohmann::json reccomendationsJson) {
     afterFilteringSize = reccomendationsJson["afterFilteringSize"];
     afterRelinkingSize = reccomendationsJson["afterRelinkingSize"];
     href = reccomendationsJson["href"];
@@ -10,32 +9,26 @@ RecommendationsSeed::RecommendationsSeed(nlohmann::json reccomendationsJson)
     type = reccomendationsJson["type"];
 }
 
-int RecommendationsSeed::GetAfterFilteringSize() const
-{
+int RecommendationsSeed::GetAfterFilteringSize() const {
     return afterFilteringSize;
 }
 
-int RecommendationsSeed::GetAfterRelinkingSize() const
-{
+int RecommendationsSeed::GetAfterRelinkingSize() const {
     return afterRelinkingSize;
 }
 
-std::string RecommendationsSeed::GetHref() const
-{
+std::string RecommendationsSeed::GetHref() const {
     return href;
 }
 
-std::string RecommendationsSeed::GetId() const
-{
+std::string RecommendationsSeed::GetId() const {
     return id;
 }
 
-int RecommendationsSeed::GetInitialPoolSize() const
-{
+int RecommendationsSeed::GetInitialPoolSize() const {
     return initialPoolSize;
 }
 
-std::string RecommendationsSeed::GetType() const
-{
+std::string RecommendationsSeed::GetType() const {
     return type;
 }
