@@ -12,15 +12,14 @@ include_directories(${CURL_INCLUDE_DIRS})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 add_subdirectory(src)
 
-add_executable(TestEndpoints tests/TestEndpoints.cpp)
+add_executable(TestEndpoints tests/test.cpp)
 
-target_link_libraries(
-        TestEndpoints
+target_link_libraries(TestEndpoints
         gtest
         gtest_main
         spotify-api-plusplus
         pthread
 )
 
-enable_testing()
-add_test(TestEndpoints ${PROJECT_BINARY_DIR}/TestEndpoints)
+#enable_testing()
+#add_test(TestEndpoints ${PROJECT_BINARY_DIR}/TestEndpoints)

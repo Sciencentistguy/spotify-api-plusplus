@@ -5,7 +5,7 @@
 #include <sstream>
 #include <utility>
 
-#include "../models/Error.h"
+#include "../models/error.h"
 
 class SpotifyException : public std::exception {
  public:
