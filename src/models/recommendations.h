@@ -8,17 +8,17 @@
 
 #include "recommendations_seed.h"
 #include "track.h"
+namespace spotify {
+    class Recommendations {
+     public:
+        explicit Recommendations(nlohmann::json reccomendationsJson);
 
-class Recommendations {
- public:
-    explicit Recommendations(nlohmann::json reccomendationsJson);
+        [[nodiscard]] const std::vector<std::shared_ptr<RecommendationsSeed>>& getSeeds() const;
+        [[nodiscard]] const std::vector<std::shared_ptr<Track>>& getTracks() const;
 
-    [[nodiscard]] const std::vector<std::shared_ptr<RecommendationsSeed>>& getSeeds() const;
-    [[nodiscard]] const std::vector<std::shared_ptr<Track>>& getTracks() const;
-
- private:
-    std::vector<std::shared_ptr<RecommendationsSeed>> seeds;
-    std::vector<std::shared_ptr<Track>> tracks;
-};
-
+     private:
+        std::vector<std::shared_ptr<RecommendationsSeed>> seeds;
+        std::vector<std::shared_ptr<Track>> tracks;
+    };
+}
 #endif

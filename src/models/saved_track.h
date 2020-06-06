@@ -7,17 +7,17 @@
 #include <nlohmann/json.hpp>
 
 #include "track.h"
+namespace spotify {
+    class SavedTrack {
+     public:
+        explicit SavedTrack(nlohmann::json trackJson);
 
-class SavedTrack {
- public:
-    explicit SavedTrack(nlohmann::json trackJson);
+        [[nodiscard]] const std::string& getAddedAt() const;
+        [[nodiscard]] std::shared_ptr<Track> getTrack() const;
 
-    [[nodiscard]] const std::string& getAddedAt() const;
-    [[nodiscard]] std::shared_ptr<Track> getTrack() const;
-
- private:
-    std::string addedAt;
-    std::shared_ptr<Track> track;
-};
-
+     private:
+        std::string addedAt;
+        std::shared_ptr<Track> track;
+    };
+}  // namespace spotify
 #endif

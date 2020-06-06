@@ -15,12 +15,12 @@ void Spotify::setAuthToken(const std::string& token) {
     this->authToken = token;
 }
 
-std::shared_ptr<Album> Spotify::getAlbum(const std::string& albumId, const options_t& options) {
-    return std::make_shared<Album>(spotifyGET("/v1/albums/" + albumId, options, authToken));
+std::shared_ptr<spotify::Album> Spotify::getAlbum(const std::string& albumId, const options_t& options) {
+    return std::make_shared<spotify::Album>(spotifyGET("/v1/albums/" + albumId, options, authToken));
 }
 
-std::vector<std::shared_ptr<Album>> Spotify::getAlbums(const std::vector<std::string>& albumIds, const options_t& options) {
-    std::vector<std::shared_ptr<Album>> albums;
+std::vector<std::shared_ptr<spotify::Album>> Spotify::getAlbums(const std::vector<std::string>& albumIds, const options_t& options) {
+    std::vector<std::shared_ptr<spotify::Album>> albums;
     albums.reserve(albumIds.size());
     for (const auto& albumId : albumIds) {
         albums.push_back(getAlbum(albumId, options));
@@ -28,84 +28,84 @@ std::vector<std::shared_ptr<Album>> Spotify::getAlbums(const std::vector<std::st
     return albums;
 }
 
-Pager<TrackSimple> Spotify::getAlbumTracks(const std::string& albumId, const options_t& options) {
-    return Pager<TrackSimple>(spotifyGET("/v1/albums/" + albumId + "/tracks", options, authToken));
+spotify::Pager<spotify::TrackSimple> Spotify::getAlbumTracks(const std::string& albumId, const options_t& options) {
+    return spotify::Pager<spotify::TrackSimple>(spotifyGET("/v1/albums/" + albumId + "/tracks", options, authToken));
 }
 
-std::shared_ptr<Artist> Spotify::getArtist(const std::string& artistId, const options_t& options) {
-    return std::make_shared<Artist>(spotifyGET("/v1/artists/" + artistId, options, authToken));
+std::shared_ptr<spotify::Artist> Spotify::getArtist(const std::string& artistId, const options_t& options) {
+    return std::make_shared<spotify::Artist>(spotifyGET("/v1/artists/" + artistId, options, authToken));
 }
 
-std::vector<std::shared_ptr<Artist>> Spotify::getArtists(const std::vector<std::string>& artistIds, const options_t& options) {
-    std::vector<std::shared_ptr<Artist>> artists;
+std::vector<std::shared_ptr<spotify::Artist>> Spotify::getArtists(const std::vector<std::string>& artistIds, const options_t& options) {
+    std::vector<std::shared_ptr<spotify::Artist>> artists;
     artists.reserve(artistIds.size());
     for (const auto& artistId : artistIds)
         artists.push_back(getArtist(artistId));
     return artists;
 }
 
-Pager<AlbumSimple> Spotify::getArtistAlbums(const std::string& artistId, const options_t& options) {
-    return Pager<AlbumSimple>(spotifyGET("/v1/artists/" + artistId + "/albums", options, authToken));
+spotify::Pager<spotify::AlbumSimple> Spotify::getArtistAlbums(const std::string& artistId, const options_t& options) {
+    return spotify::Pager<spotify::AlbumSimple>(spotifyGET("/v1/artists/" + artistId + "/albums", options, authToken));
 }
 
-std::vector<std::shared_ptr<Track>> Spotify::getArtistTopTracks(const std::string& artistId, const std::string& country, options_t options) {
-    std::vector<std::shared_ptr<Track>> tracks;
+std::vector<std::shared_ptr<spotify::Track>> Spotify::getArtistTopTracks(const std::string& artistId, const std::string& country, options_t options) {
+    std::vector<std::shared_ptr<spotify::Track>> tracks;
     options["country"] = country;
     nlohmann::json json = spotifyGET("/v1/artists/" + artistId + "/top-tracks", options, authToken);
     for (const auto& trackJson : json["tracks"]) {
-        tracks.push_back(std::make_shared<Track>(trackJson));
+        tracks.push_back(std::make_shared<spotify::Track>(trackJson));
     }
     return tracks;
 }
 
-std::vector<std::shared_ptr<Artist>> Spotify::getArtistRelatedArtists(const std::string& artistId, const options_t& options) {
-    std::vector<std::shared_ptr<Artist>> artists;
+std::vector<std::shared_ptr<spotify::Artist>> Spotify::getArtistRelatedArtists(const std::string& artistId, const options_t& options) {
+    std::vector<std::shared_ptr<spotify::Artist>> artists;
     nlohmann::json json = spotifyGET("/v1/artists/" + artistId + "/related-artists", options, authToken);
     for (const auto& artistJson : json["artists"])
-        artists.push_back(std::make_shared<Artist>(artistJson));
+        artists.push_back(std::make_shared<spotify::Artist>(artistJson));
     return artists;
 }
 
-std::shared_ptr<AudioFeatures> Spotify::getAudioFeatures(const std::string& trackId, const options_t& options) {
-    return std::make_shared<AudioFeatures>(spotifyGET("/v1/audio-features/" + trackId, options, authToken));
+std::shared_ptr<spotify::AudioFeatures> Spotify::getAudioFeatures(const std::string& trackId, const options_t& options) {
+    return std::make_shared<spotify::AudioFeatures>(spotifyGET("/v1/audio-features/" + trackId, options, authToken));
 }
 
-std::vector<std::shared_ptr<AudioFeatures>> Spotify::getAudioFeatures(const std::vector<std::string>& trackIds, const options_t& options) {
-    std::vector<std::shared_ptr<AudioFeatures>> audioFeatures;
+std::vector<std::shared_ptr<spotify::AudioFeatures>> Spotify::getAudioFeatures(const std::vector<std::string>& trackIds, const options_t& options) {
+    std::vector<std::shared_ptr<spotify::AudioFeatures>> audioFeatures;
     audioFeatures.reserve(trackIds.size());
     for (const std::string& trackId : trackIds)
         audioFeatures.push_back(getAudioFeatures(trackId, options));
     return audioFeatures;
 }
 
-Pager<PlaylistSimple> Spotify::getFeaturedPlaylists(const options_t& options) {
+spotify::Pager<spotify::PlaylistSimple> Spotify::getFeaturedPlaylists(const options_t& options) {
     // TODO Add access to message variable
-    return Pager<PlaylistSimple>(spotifyGET("/v1/browse/featured-playlists", options, authToken)["playlists"]);
+    return spotify::Pager<spotify::PlaylistSimple>(spotifyGET("/v1/browse/featured-playlists", options, authToken)["playlists"]);
 }
 
-Pager<AlbumSimple> Spotify::getNewReleases(const options_t& options) {
-    return Pager<AlbumSimple>(spotifyGET("/v1/browse/new-releases", options, authToken)["albums"]);
+spotify::Pager<spotify::AlbumSimple> Spotify::getNewReleases(const options_t& options) {
+    return spotify::Pager<spotify::AlbumSimple>(spotifyGET("/v1/browse/new-releases", options, authToken)["albums"]);
 }
 
-Pager<Category> Spotify::getCategories(const options_t& options) {
-    return Pager<Category>(spotifyGET("/v1/browse/categories", options, authToken)["categories"]);
+spotify::Pager<spotify::Category> Spotify::getCategories(const options_t& options) {
+    return spotify::Pager<spotify::Category>(spotifyGET("/v1/browse/categories", options, authToken)["categories"]);
 }
 
-std::shared_ptr<Category> Spotify::getCategory(const std::string& categoryId, const options_t& options) {
-    return std::make_shared<Category>(spotifyGET("/v1/browse/categories/" + categoryId, options, authToken));
+std::shared_ptr<spotify::Category> Spotify::getCategory(const std::string& categoryId, const options_t& options) {
+    return std::make_shared<spotify::Category>(spotifyGET("/v1/browse/categories/" + categoryId, options, authToken));
 }
 
-Pager<PlaylistSimple> Spotify::getCategoryPlaylists(const std::string& categoryId, const options_t& options) {
-    return Pager<PlaylistSimple>(spotifyGET("/v1/browse/categories/" + categoryId + "/playlists", options, authToken)["playlists"]);
+spotify::Pager<spotify::PlaylistSimple> Spotify::getCategoryPlaylists(const std::string& categoryId, const options_t& options) {
+    return spotify::Pager<spotify::PlaylistSimple>(spotifyGET("/v1/browse/categories/" + categoryId + "/playlists", options, authToken)["playlists"]);
 }
 
-std::shared_ptr<User> Spotify::getMe(const options_t& options) {
-    return std::make_shared<User>(spotifyGET("/v1/me", options, authToken));
+std::shared_ptr<spotify::User> Spotify::getMe(const options_t& options) {
+    return std::make_shared<spotify::User>(spotifyGET("/v1/me", options, authToken));
 }
 
-CursorPager<Artist> Spotify::getMyFollowedArtists(options_t options) {
+spotify::CursorPager<spotify::Artist> Spotify::getMyFollowedArtists(options_t options) {
     options["type"] = "artist";
-    return CursorPager<Artist>(spotifyGET("/v1/me/following", options, authToken)["artists"]);
+    return spotify::CursorPager<spotify::Artist>(spotifyGET("/v1/me/following", options, authToken)["artists"]);
 }
 
 void Spotify::followArtist(const std::string& artistId, options_t options) {
@@ -157,8 +157,8 @@ void Spotify::saveTracks(const std::vector<std::string>& trackIds, options_t opt
     spotifyPUT("/v1/me/tracks", options, authToken);
 }
 
-Pager<SavedTrack> Spotify::getMySavedTracks(const options_t& options) {
-    return Pager<SavedTrack>(spotifyGET("/v1/me/tracks", options, authToken));
+spotify::Pager<spotify::SavedTrack> Spotify::getMySavedTracks(const options_t& options) {
+    return spotify::Pager<spotify::SavedTrack>(spotifyGET("/v1/me/tracks", options, authToken));
 }
 
 void Spotify::removeSavedTracks(const std::vector<std::string>& trackIds, options_t options) {
@@ -176,8 +176,8 @@ void Spotify::saveAlbums(const std::vector<std::string>& albumIds, options_t opt
     spotifyPUT("/v1/me/albums", options, authToken);
 }
 
-Pager<SavedAlbum> Spotify::getMySavedAlbums(const options_t& options) {
-    return Pager<SavedAlbum>(spotifyGET("/v1/me/albums", options, authToken));
+spotify::Pager<spotify::SavedAlbum> Spotify::getMySavedAlbums(const options_t& options) {
+    return spotify::Pager<spotify::SavedAlbum>(spotifyGET("/v1/me/albums", options, authToken));
 }
 
 void Spotify::removeSavedAlbums(const std::vector<std::string>& albumIds, options_t options) {
@@ -190,84 +190,85 @@ bool Spotify::checkSavedAlbums(const std::vector<std::string>& albumIds, options
     return spotifyGET("/v1/me/albums/contains", options, authToken)[0];
 }
 
-Pager<Artist> Spotify::getMyTopArtists(const options_t& options) {
-    return Pager<Artist>(spotifyGET("/v1/me/top/artists", options, authToken));
+spotify::Pager<spotify::Artist> Spotify::getMyTopArtists(const options_t& options) {
+    return spotify::Pager<spotify::Artist>(spotifyGET("/v1/me/top/artists", options, authToken));
 }
 
-Pager<Track> Spotify::getMyTopTracks(const options_t& options) {
-    return Pager<Track>(spotifyGET("/v1/me/top/tracks", options, authToken));
+spotify::Pager<spotify::Track> Spotify::getMyTopTracks(const options_t& options) {
+    return spotify::Pager<spotify::Track>(spotifyGET("/v1/me/top/tracks", options, authToken));
 }
 
-Recommendations Spotify::getRecommendations(const options_t& options) {
-    return Recommendations(spotifyGET("/v1/recommendations", options, authToken));
+spotify::Recommendations Spotify::getRecommendations(const options_t& options) {
+    return spotify::Recommendations(spotifyGET("/v1/recommendations", options, authToken));
 }
 
-Pager<AlbumSimple> Spotify::searchAlbums(const std::string& query, options_t options) {
+spotify::Pager<spotify::AlbumSimple> Spotify::searchAlbums(const std::string& query, options_t options) {
     options["type"] = "album";
     options["q"] = query;
-    return Pager<AlbumSimple>(spotifyGET("/v1/search", options, authToken)["albums"]);
+    return spotify::Pager<spotify::AlbumSimple>(spotifyGET("/v1/search", options, authToken)["albums"]);
 }
 
-Pager<Artist> Spotify::searchArtists(const std::string& query, options_t options) {
+spotify::Pager<spotify::Artist> Spotify::searchArtists(const std::string& query, options_t options) {
     options["type"] = "artist";
     options["q"] = query;
-    return Pager<Artist>(spotifyGET("/v1/search", options, authToken)["artists"]);
+    return spotify::Pager<spotify::Artist>(spotifyGET("/v1/search", options, authToken)["artists"]);
 }
 
-Pager<PlaylistSimple> Spotify::searchPlaylists(const std::string& query, options_t options) {
+spotify::Pager<spotify::PlaylistSimple> Spotify::searchPlaylists(const std::string& query, options_t options) {
     options["type"] = "playlist";
     options["q"] = query;
-    return Pager<PlaylistSimple>(spotifyGET("/v1/search", options, authToken)["playlists"]);
+    return spotify::Pager<spotify::PlaylistSimple>(spotifyGET("/v1/search", options, authToken)["playlists"]);
 }
 
-Pager<Track> Spotify::searchTracks(const std::string& query, options_t options) {
+spotify::Pager<spotify::Track> Spotify::searchTracks(const std::string& query, options_t options) {
     options["type"] = "track";
     options["q"] = query;
-    return Pager<Track>(spotifyGET("/v1/search", options, authToken)["tracks"]);
+    return spotify::Pager<spotify::Track>(spotifyGET("/v1/search", options, authToken)["tracks"]);
 }
 
-std::shared_ptr<Track> Spotify::getTrack(const std::string& trackId, const options_t& options) {
-    return std::make_shared<Track>(spotifyGET("/v1/tracks/" + trackId, options, authToken));
+std::shared_ptr<spotify::Track> Spotify::getTrack(const std::string& trackId, const options_t& options) {
+    return std::make_shared<spotify::Track>(spotifyGET("/v1/tracks/" + trackId, options, authToken));
 }
 
-std::vector<std::shared_ptr<Track>> Spotify::getTracks(const std::vector<std::string>& trackIds, const options_t& options) {
-    std::vector<std::shared_ptr<Track>> tracks;
+std::vector<std::shared_ptr<spotify::Track>> Spotify::getTracks(const std::vector<std::string>& trackIds, const options_t& options) {
+    std::vector<std::shared_ptr<spotify::Track>> tracks;
     tracks.reserve(trackIds.size());
     for (const auto& trackId : trackIds)
         tracks.push_back(getTrack(trackId, options));
     return tracks;
 }
 
-std::shared_ptr<UserPublic> Spotify::getUser(const std::string& userId, const options_t& options) {
-    return std::make_shared<UserPublic>(spotifyGET("/v1/users/" + userId, options, authToken));
+std::shared_ptr<spotify::UserPublic> Spotify::getUser(const std::string& userId, const options_t& options) {
+    return std::make_shared<spotify::UserPublic>(spotifyGET("/v1/users/" + userId, options, authToken));
 }
 
-Pager<PlaylistSimple> Spotify::getUserPlaylists(const std::string& userId, const options_t& options) {
-    return Pager<PlaylistSimple>(spotifyGET("/v1/users/" + userId + "/playlists", options, authToken));
+spotify::Pager<spotify::PlaylistSimple> Spotify::getUserPlaylists(const std::string& userId, const options_t& options) {
+    return spotify::Pager<spotify::PlaylistSimple>(spotifyGET("/v1/users/" + userId + "/playlists", options, authToken));
 }
 
-Pager<PlaylistSimple> Spotify::getMyPlaylists(const options_t& options) {
-    return Pager<PlaylistSimple>(spotifyGET("/v1/me/playlists", options, authToken));
+spotify::Pager<spotify::PlaylistSimple> Spotify::getMyPlaylists(const options_t& options) {
+    return spotify::Pager<spotify::PlaylistSimple>(spotifyGET("/v1/me/playlists", options, authToken));
 }
 
-std::shared_ptr<Playlist> Spotify::getPlaylist(const std::string& userId, const std::string& playlistId, const options_t& options) {
-    return std::make_shared<Playlist>(spotifyGET("/v1/users/" + userId + "/playlists/" + playlistId, options, authToken));
+std::shared_ptr<spotify::Playlist> Spotify::getPlaylist(const std::string& userId, const std::string& playlistId, const options_t& options) {
+    return std::make_shared<spotify::Playlist>(spotifyGET("/v1/users/" + userId + "/playlists/" + playlistId, options, authToken));
 }
 
-std::shared_ptr<Playlist> Spotify::getPlaylist(const std::string& playlistId, const options_t& options) {
-    return std::make_shared<Playlist>(spotifyGET("/v1/playlists/" + playlistId, options, authToken));
-}
-Pager<PlaylistTrack> Spotify::getPlaylistTracks(const std::string& userId, const std::string& playlistId, const options_t& options) {
-    return Pager<PlaylistTrack>(spotifyGET("/v1/users/" + userId + "/playlists/" + playlistId + "/tracks", options, authToken));
+std::shared_ptr<spotify::Playlist> Spotify::getPlaylist(const std::string& playlistId, const options_t& options) {
+    return std::make_shared<spotify::Playlist>(spotifyGET("/v1/playlists/" + playlistId, options, authToken));
 }
 
-std::shared_ptr<Playlist> Spotify::createPlaylist(const std::string& userId, const std::string& name, const options_t& options) {
+spotify::Pager<spotify::PlaylistTrack> Spotify::getPlaylistTracks(const std::string& userId, const std::string& playlistId, const options_t& options) {
+    return spotify::Pager<spotify::PlaylistTrack>(spotifyGET("/v1/users/" + userId + "/playlists/" + playlistId + "/tracks", options, authToken));
+}
+
+std::shared_ptr<spotify::Playlist> Spotify::createPlaylist(const std::string& userId, const std::string& name, const options_t& options) {
     nlohmann::json bodyJson;
     bodyJson["name"] = name;
     for (auto option : options)
         bodyJson[option.first] = option.second;
 
-    return std::make_shared<Playlist>(spotifyPOST("/v1/users/" + userId + "/playlists", options_t(), authToken, bodyJson.dump(4)));
+    return std::make_shared<spotify::Playlist>(spotifyPOST("/v1/users/" + userId + "/playlists", options_t(), authToken, bodyJson.dump(4)));
 }
 
 void Spotify::editPlaylist(const std::string& userId, const std::string& playlistId, const options_t& options) {

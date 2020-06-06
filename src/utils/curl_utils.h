@@ -66,7 +66,7 @@ nlohmann::json spotifyCurlInternal(const std::string& request, const std::string
     long statusCode = 0;
     curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &statusCode);
     if (statusCode < 200 || statusCode > 204)
-        throw SpotifyException(Error(nlohmann::json::parse(readBuffer)["error"]));
+        throw spotify::SpotifyException(spotify::Error(nlohmann::json::parse(readBuffer)["error"]));
 
     curl_easy_cleanup(curl);
     if (readBuffer.empty())

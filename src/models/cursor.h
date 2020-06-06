@@ -4,15 +4,15 @@
 #include <string>
 
 #include <nlohmann/json.hpp>
+namespace spotify {
+    class Cursor {
+     public:
+        explicit Cursor(nlohmann::json cursorJson);
 
-class Cursor {
- public:
-    explicit Cursor(nlohmann::json cursorJson);
+        [[nodiscard]] const std::string& getAfter() const;
 
-    [[nodiscard]] const std::string& getAfter() const;
-
- private:
-    std::string after;
-};
-
+     private:
+        std::string after;
+    };
+}  // namespace spotify
 #endif

@@ -8,21 +8,21 @@
 #include <nlohmann/json.hpp>
 
 #include "image.h"
+namespace spotify {
+    class Category {
+     public:
+        explicit Category(nlohmann::json copyrightJson);
 
-class Category {
- public:
-    explicit Category(nlohmann::json copyrightJson);
+        [[nodiscard]] const std::string& getHref() const;
+        [[nodiscard]] const std::vector<std::shared_ptr<Image>>& getIcons() const;
+        [[nodiscard]] const std::string& getId() const;
+        [[nodiscard]] const std::string& getName() const;
 
-    [[nodiscard]] const std::string& getHref() const;
-    [[nodiscard]] const std::vector<std::shared_ptr<Image>>& getIcons() const;
-    [[nodiscard]] const std::string& getId() const;
-    [[nodiscard]] const std::string& getName() const;
-
- private:
-    std::string href;
-    std::vector<std::shared_ptr<Image>> icons;
-    std::string id;
-    std::string name;
-};
-
+     private:
+        std::string href;
+        std::vector<std::shared_ptr<Image>> icons;
+        std::string id;
+        std::string name;
+    };
+}  // namespace spotify
 #endif

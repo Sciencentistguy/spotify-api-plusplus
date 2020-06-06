@@ -11,21 +11,21 @@
 #include "followers.h"
 #include "image.h"
 #include "user_public.h"
+namespace spotify {
+    class User : public UserPublic {
+     public:
+        explicit User(nlohmann::json userJson);
 
-class User : public UserPublic {
- public:
-    explicit User(nlohmann::json userJson);
+        [[nodiscard]] const std::string& getBirthdate() const;
+        [[nodiscard]] const std::string& getCountry() const;
+        [[nodiscard]] const std::string& getEmail() const;
+        [[nodiscard]] const std::string& getProduct() const;
 
-    [[nodiscard]] const std::string& getBirthdate() const;
-    [[nodiscard]] const std::string& getCountry() const;
-    [[nodiscard]] const std::string& getEmail() const;
-    [[nodiscard]] const std::string& getProduct() const;
-
- private:
-    std::string birthdate;
-    std::string country;
-    std::string email;
-    std::string product;
-};
-
+     private:
+        std::string birthdate;
+        std::string country;
+        std::string email;
+        std::string product;
+    };
+}
 #endif

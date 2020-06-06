@@ -6,20 +6,20 @@
 #include <utility>
 
 #include "../models/error.h"
+namespace spotify {
+    class SpotifyException : public std::exception {
+     public:
+        explicit SpotifyException(Error error) : error(std::move(error)) {
+        }
 
-class SpotifyException : public std::exception {
- public:
-    explicit SpotifyException(Error error) : error(std::move(error)) {
-    }
+        [[nodiscard]] const char* what() const noexcept override {
+            char* what = (char*) calloc(error.getMessage().length(), sizeof(char));
+            strcpy(what, error.getMessage().c_str());
+            return what;
+        }
 
-    [[nodiscard]] const char* what() const noexcept override {
-        char* what = (char*) calloc(error.getMessage().length(), sizeof(char));
-        strcpy(what, error.getMessage().c_str());
-        return what;
-    }
-
- private:
-    Error error;
-};
-
+     private:
+        Error error;
+    };
+}  // namespace spotify
 #endif

@@ -8,21 +8,21 @@
 
 #include "track.h"
 #include "user.h"
+namespace spotify {
+    class PlaylistTrack {
+     public:
+        explicit PlaylistTrack(nlohmann::json trackJson);
 
-class PlaylistTrack {
- public:
-    explicit PlaylistTrack(nlohmann::json trackJson);
+        [[nodiscard]] const std::string& getAddedAt() const;
+        [[nodiscard]] std::shared_ptr<UserPublic> getAddedBy() const;
+        [[nodiscard]] bool isLocal() const;
+        [[nodiscard]] std::shared_ptr<Track> getTrack() const;
 
-    [[nodiscard]] const std::string& getAddedAt() const;
-    [[nodiscard]] std::shared_ptr<UserPublic> getAddedBy() const;
-    [[nodiscard]] bool isLocal() const;
-    [[nodiscard]] std::shared_ptr<Track> getTrack() const;
-
- private:
-    std::string addedAt;
-    std::shared_ptr<UserPublic> addedBy;
-    bool local;
-    std::shared_ptr<Track> track;
-};
-
+     private:
+        std::string addedAt;
+        std::shared_ptr<UserPublic> addedBy;
+        bool local;
+        std::shared_ptr<Track> track;
+    };
+}  // namespace spotify
 #endif

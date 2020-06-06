@@ -4,17 +4,17 @@
 #include <string>
 
 #include <nlohmann/json.hpp>
+namespace spotify {
+    class Copyright {
+     public:
+        explicit Copyright(nlohmann::json copyrightJson);
 
-class Copyright {
- public:
-    explicit Copyright(nlohmann::json copyrightJson);
+        [[nodiscard]] const std::string& getText() const;
+        [[nodiscard]] const std::string& getType() const;
 
-    [[nodiscard]] const std::string& getText() const;
-    [[nodiscard]] const std::string& getType() const;
-
- private:
-    std::string text;
-    std::string type;
-};
-
+     private:
+        std::string text;
+        std::string type;
+    };
+}
 #endif

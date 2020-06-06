@@ -1,16 +1,17 @@
 #include "saved_track.h"
 
 #include <memory>
+namespace spotify {
+    SavedTrack::SavedTrack(nlohmann::json trackJson) {
+        addedAt = trackJson["added_at"];
+        track = std::make_shared<Track>(trackJson["track"]);
+    }
 
-SavedTrack::SavedTrack(nlohmann::json trackJson) {
-    addedAt = trackJson["added_at"];
-    track = std::make_shared<Track>(trackJson["track"]);
-}
+    const std::string& SavedTrack::getAddedAt() const {
+        return addedAt;
+    }
 
-const std::string& SavedTrack::getAddedAt() const {
-    return addedAt;
-}
-
-std::shared_ptr<Track> SavedTrack::getTrack() const {
-    return track;
-}
+    std::shared_ptr<Track> SavedTrack::getTrack() const {
+        return track;
+    }
+}  // namespace spotify

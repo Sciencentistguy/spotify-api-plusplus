@@ -5,19 +5,20 @@
 
 #include "context.h"
 #include "track_simple.h"
+namespace spotify {
+    class PlayHistoryObject {
+     public:
+        explicit PlayHistoryObject(nlohmann::json playHistoryJson);
 
-class PlayHistoryObject {
- public:
-    explicit PlayHistoryObject(nlohmann::json playHistoryJson);
+        [[nodiscard]] const TrackSimple& getTrack() const;
+        [[nodiscard]] const std::string& getPlayedAt() const;
+        [[nodiscard]] const Context& getContext() const;
 
-    [[nodiscard]] const TrackSimple& getTrack() const;
-    [[nodiscard]] const std::string& getPlayedAt() const;
-    [[nodiscard]] const Context& getContext() const;
-
- private:
-    TrackSimple track;
-    std::string playedAt;
-    Context context;
-};
+     private:
+        TrackSimple track;
+        std::string playedAt;
+        Context context;
+    };
+}  // namespace spotify
 
 #endif

@@ -11,21 +11,21 @@
 #include "artist_simple.h"
 #include "followers.h"
 #include "image.h"
+namespace spotify {
+    class Artist : public ArtistSimple {
+     public:
+        explicit Artist(nlohmann::json artistJson);
 
-class Artist : public ArtistSimple {
- public:
-    explicit Artist(nlohmann::json artistJson);
+        [[nodiscard]] std::shared_ptr<Followers> getFollowers() const;
+        [[nodiscard]] const std::vector<std::string>& getGenres() const;
+        [[nodiscard]] const std::vector<std::shared_ptr<Image>>& getImages() const;
+        [[nodiscard]] int getPopularity() const;
 
-    [[nodiscard]] std::shared_ptr<Followers> getFollowers() const;
-    [[nodiscard]] const std::vector<std::string>& getGenres() const;
-    [[nodiscard]] const std::vector<std::shared_ptr<Image>>& getImages() const;
-    [[nodiscard]] int getPopularity() const;
-
- private:
-    std::shared_ptr<Followers> followers;
-    std::vector<std::string> genres;
-    std::vector<std::shared_ptr<Image>> images;
-    int popularity;
-};
-
+     private:
+        std::shared_ptr<Followers> followers;
+        std::vector<std::string> genres;
+        std::vector<std::shared_ptr<Image>> images;
+        int popularity;
+    };
+}  // namespace spotify
 #endif

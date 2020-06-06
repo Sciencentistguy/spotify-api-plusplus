@@ -4,19 +4,19 @@
 #include <string>
 
 #include <nlohmann/json.hpp>
+namespace spotify {
+    class Image {
+     public:
+        explicit Image(nlohmann::json imageJson);
 
-class Image {
- public:
-    explicit Image(nlohmann::json imageJson);
+        [[nodiscard]] int getHeight() const;
+        [[nodiscard]] const std::string& getUrl() const;
+        [[nodiscard]] int getWidth() const;
 
-    [[nodiscard]] int getHeight() const;
-    [[nodiscard]] const std::string& getUrl() const;
-    [[nodiscard]] int getWidth() const;
-
- private:
-    int height;
-    std::string url;
-    int width;
-};
-
+     private:
+        int height;
+        std::string url;
+        int width;
+    };
+}  // namespace spotify
 #endif
